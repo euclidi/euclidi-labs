@@ -15,14 +15,14 @@ def inventory():
     for p in sorted(ROOT.glob("*/project.json")):
         slug = p.parent.name
         if not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", slug): raise ValueError(slug)
-        m = json.loads(p.read_text())
+        m = json.loads(p.read_text(encoding="utf-8"))
         if type(m["id"]) is not int or m["id"] < 1 or m["id"] in ids: raise ValueError("Invalid/duplicate id: " + slug)
         ids.add(m["id"])
         for key in ("title", "category", "version", "description"):
             if not isinstance(m[key], str) or not m[key].strip(): raise ValueError(slug + ": " + key)
         for name in (*DOCS, "index.html"):
             target = p.parent / name
-            if not target.is_file() or not target.read_text().strip(): raise ValueError("Missing/empty " + str(target))
+            if not target.is_file() or not target.read_text(encoding="utf-8").strip(): raise ValueError("Missing/empty " + str(target))
         for key, default in (("color","#26332d"),("ink","#dce6c8")):
             m.setdefault(key,default)
             if not re.fullmatch(r"#[0-9a-fA-F]{6}",m[key]): raise ValueError("Invalid color")
@@ -40,7 +40,7 @@ def generate(items):
         links = "".join(f'<a href="{REPO}{slug}/{d}">{label}</a>' for d,label in zip(DOCS,("About","Spec","Roadmap","Status")))
         cards.append(f'<article class="game" data-category="{cat}" data-name="{title}" style="--ink:{m["ink"]};--cover:{m["color"]}"><a class="cover" href="{url}" aria-label="Open {title}">{art}<span class="cover-top"><span>EL / {m["id"]:03}</span><span>{cat}</span></span><span class="cover-title">{title}</span><span class="cover-bottom">EUCLIDI LABS</span></a><div class="info"><div class="meta"><span>{cat}</span><span>{version}</span></div><h2>{title}</h2><p>{desc}</p><div class="actions"><a class="play" href="{url}">Open <span aria-hidden="true">▶</span></a></div></div><nav class="project-docs" aria-label="{title} documentation">{links}</nav></article>')
         rows.append(f'- [{title}]({slug}/README.md) — {version} · [Spec]({slug}/SPEC.md) · [Roadmap]({slug}/ROADMAP.md) · [Status]({slug}/STATUS.md)')
-    return {"index.html":region((ROOT/"index.html").read_text(),"PROJECT CARDS","\n".join(cards)), "README.md":region((ROOT/"README.md").read_text(),"PROJECT INDEX","\n".join(rows))}
+    return {"index.html":region((ROOT/"index.html").read_text(encoding="utf-8"),"PROJECT CARDS","\n".join(cards)), "README.md":region((ROOT/"README.md").read_text(encoding="utf-8"),"PROJECT INDEX","\n".join(rows))}
 def main():
     parser=argparse.ArgumentParser()
     parser.add_argument("--check",action="store_true")
@@ -50,8 +50,8 @@ def main():
     for name,content in generate(items).items():
         p=ROOT/name
         if args.check or args.stage:
-            if p.read_text()!=content: raise SystemExit(name+" stale; run tools/catalog.py")
-        else: p.write_text(content)
+            if p.read_text(encoding="utf-8")!=content: raise SystemExit(name+" stale; run tools/catalog.py")
+        else: p.write_text(content,encoding="utf-8")
     if args.stage:
         out=args.stage
         out.mkdir(parents=True,exist_ok=True)
