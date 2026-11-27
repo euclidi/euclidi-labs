@@ -9,4 +9,17 @@ Run the schema and source-byte check from this folder with Node.js and the Khron
 
 You can also pass an existing validator module's full path. The upstream RiggedSimple fixture produces one skinned-mesh hierarchy warning. The script reports it with the structural error count. Load the fixtures in your renderer to evaluate visual output and sampler behavior.
 
+## Credits
+
+The files are unchanged from the Khronos source revision. Preserve each fixture's license file and these credits when reusing it.
+
+| Fixtures | Creator and license |
+|---|---|
+| RiggedSimple | © 2017 Cesium, CC BY 4.0 |
+| MorphPrimitivesTest | © 2018 ft-lab, CC BY 4.0. Upstream also credits Frank Galligan for its 2020 Draco variant. |
+| MetalRoughSpheres and TextureSettingsTest | © 2017 Analytical Graphics, Inc. Assets by Ed Mackey, CC BY 4.0. |
+| TextureCoordinateTest | Ed Mackey for Analytical Graphics, Inc. The current Khronos metadata identifies CC0 and the original GLB includes a CC BY 4.0 credit. Retain both notices. |
+
+[CC BY 4.0 license](https://creativecommons.org/licenses/by/4.0/)
+
 [Khronos glTF Sample Assets](https://github.com/KhronosGroup/glTF-Sample-Assets/tree/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea)
