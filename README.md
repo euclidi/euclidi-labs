@@ -2,9 +2,9 @@
 
 Independent catalog for interactive experiments, scientific simulations, engineering prototypes, research tools and visual learning.
 
-**[Catalog](https://euclidi.github.io/euclidi-labs/)** · [Mechanical library](https://euclidi.github.io/euclidi-labs/library/) · [Euclidi Games](https://euclidi.github.io/euclidi-games/)
+**[Catalog](https://euclidi.github.io/euclidi-labs/)** · [Euclidi Games](https://euclidi.github.io/euclidi-games/)
 
-The repository is private; Pages publication depends on your GitHub plan and Pages settings. The project index below is generated from registered project manifests.
+The project index below is generated from registered project manifests.
 
 ## Project index
 
@@ -18,7 +18,6 @@ The repository is private; Pages publication depends on your GitHub plan and Pag
 - [Documentation standard](docs/PROJECT_DOCUMENTATION.md)
 - [Templates](docs/templates/)
 - [Catalog workflow](docs/CATALOG.md)
-- [Mechanical library](library/README.md) · [Spec](library/SPEC.md) · [Roadmap](library/ROADMAP.md) · [Status](library/STATUS.md)
 - [CI](https://github.com/euclidi/euclidi-labs/actions)
 
-Run `python3 tools/catalog.py --check` before committing. Use `python3 -m http.server 8000` from the repository root to preview both views locally.
+Run `python3 tools/catalog.py --check` before committing. Use `python3 -m http.server 8000` from the repository root to preview the catalog locally.

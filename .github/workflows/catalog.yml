@@ -14,7 +14,6 @@ jobs:
       - run: python3 tools/catalog.py --check
       - run: |
           node --check assets/brand/catalog-motion.js
-          node --input-type=module --check < library/library.js
           python3 tools/catalog.py --stage /tmp/labs-site
       - name: Browser smoke tests
         run: |

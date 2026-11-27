@@ -1,4 +1,4 @@
-/* Catalog motion — On by default, optional OS-aware Auto mode, mouse events independent of media capability. */
+/* Catalog motion — OS-aware Auto by default, optional manual mode, mouse events independent of media capability. */
 (()=>{
  const preference=matchMedia('(prefers-reduced-motion: reduce)');
  const replay=document.getElementById('crt-replay'), mode=document.getElementById('motion-mode'), choice=document.getElementById('motion-choice'), status=document.getElementById('motion-status');
@@ -6,7 +6,7 @@
  const line=document.createElement('div');line.className='eg-crt-line';overlay.append(line);document.body.append(overlay);
  let generation=0;
  const key='euclidi.labs.catalog.motion.v1';
- mode.value='auto'; // Default applies even when the OS requests reduced motion.
+ mode.value='auto'; // Default respects the OS reduced-motion setting.
  let hasSavedPreference=false;
  try{const saved=localStorage.getItem(key);if(['auto','on','off'].includes(saved)){mode.value=saved;hasSavedPreference=true;}}catch{}
  const enabled=()=>mode.value==='on'||(mode.value==='auto'&&!preference.matches);
