@@ -1,0 +1,7 @@
+# Catalog operations
+
+Add a top-level slug directory containing `index.html`, `README.md`, `SPEC.md`, `ROADMAP.md`, `STATUS.md`, and `project.json`. The manifest requires `id` (unique positive integer), `title`, `category`, `version`, `description`. Optional `cover` points to approved artwork inside the project directory, `color` and `ink` are hex colors, `archived` hides the card. Run `python3 tools/catalog.py` to regenerate both the root HTML and README. Never manually change generated card regions. Both Classic and Mechanical read the same card list. No invented entries or cover art. Use categories Simulation, Physics, Tools, Research or additional domain-specific labels.
+
+Pages: in repository Settings → Pages, choose GitHub Actions as source if the plan permits Pages on this private repository. The workflow validates on pushes/PRs; the manually dispatched workflow publishes the static catalog and explicitly registered, non-archived project directories (including their files), not the entire repository. Review those project directories for secrets before publishing. Private GitHub documentation links require repository access. The site may be public even when the repository is private. Keep visibility unchanged unless the owner explicitly requests otherwise.
+
+Local preview: run `python3 tools/catalog.py --check` then `python3 -m http.server 8000`. Open `/` and `/library/`. Use reduced motion, mobile viewport and WebGL fallback tests before release.

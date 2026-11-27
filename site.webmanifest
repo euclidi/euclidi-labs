@@ -1,0 +1,17 @@
+{
+  "name": "Euclidi Labs",
+  "short_name": "Labs",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "browser",
+  "background_color": "#111210",
+  "theme_color": "#111210",
+  "icons": [
+    {
+      "src": "assets/brand/el.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

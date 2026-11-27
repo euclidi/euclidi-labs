@@ -1,0 +1,107 @@
+/* Euclidi Labs — design revision 6: harmonized pixel typography and observable motion. */
+
+:root {
+  --ui-font:ui-monospace,Consolas,monospace;--ui-scale:.9;--ui-tracking:1px;--motion-speed:1;
+  --type-small:calc(10px * var(--ui-scale));--type-body:calc(12px * var(--ui-scale));
+  --type-card:calc(15px * var(--ui-scale));--type-brand:calc(13px * var(--ui-scale));
+  font-family:var(--ui-font);font-size:var(--type-body);font-weight:400;font-synthesis:none;
+  letter-spacing:var(--ui-tracking);line-height:1.9;-webkit-text-size-adjust:100%;text-size-adjust:100%;
+}
+body {font-size:var(--type-body);}
+.brand,.top nav,.intro h1,.intro p,.eyebrow,.meta,.cover-top,.cover-bottom,.cover-title,.count,.foot,
+.catalog-heading h2,.info h2,.info p,.play,.legacy,.project-docs,.filters button,.search input,.search span,
+.actions a,#empty,#crt-replay {
+  font-family:var(--ui-font);font-weight:400;letter-spacing:var(--ui-tracking);font-style:normal;
+}
+button,input {letter-spacing:inherit;font-weight:400;}
+.top {height:auto;min-height:70px;padding-block:12px;flex-wrap:wrap;gap:12px;}
+.brand {font-size:var(--type-brand);line-height:1.8;min-width:0;}
+.mark {width:40px;height:40px;transform-origin:center;}
+.top nav {font-size:var(--type-small);gap:18px;flex-wrap:wrap;flex-shrink:0;}
+.intro {padding:32px 0 24px;}
+.intro h1 {font-size:calc(clamp(23px,2.6vw,30px) * var(--ui-scale));line-height:1.65;margin:10px 0 12px;overflow-wrap:anywhere;}
+.intro p {font-size:var(--type-body);line-height:2;max-width:76ch;}
+.eyebrow,.count,.foot,.meta,.project-docs,.legacy,.actions a:not(.play) {font-size:var(--type-small);line-height:1.9;}
+.toolbar {gap:12px;margin-bottom:18px;}
+.filters {gap:4px;}
+.filters button,.search input,.play {font-size:var(--type-body);line-height:1.65;}
+.filters button {min-height:44px;padding:9px 10px;}
+.filters button[aria-pressed=true] {font-weight:400;}
+.search {max-width:100%;}
+.search input {width:190px;}
+.search span {font-size:var(--type-body);}
+.catalog-heading {gap:12px;flex-wrap:wrap;margin-bottom:12px;}
+.catalog-heading h2 {font-size:var(--type-brand);line-height:1.7;}
+.catalog-tools {display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+#crt-replay {font-size:var(--type-small);background:transparent;color:var(--muted);border:1px solid var(--line);min-height:36px;padding:7px 10px;}
+#crt-replay:hover,#crt-replay:focus-visible {color:var(--fg);border-color:var(--accent);}
+#crt-replay:disabled {opacity:.65;cursor:default;}
+.games {gap:20px;}
+.game {container-type:inline-size;min-width:0;position:relative;transform-origin:center;}
+.cover {padding:clamp(12px,4cqw,18px);gap:8px;}
+/* Text-based cover designs keep their colors and line arrangements; real artwork is not altered. */
+.cover-title,.cover-title.sanctuary,.cover-title.backyard-astronaut,.cover-title.pacman,.cover-title.dojo,
+.cover-title.dummy-lab-w18,.cover-title.sector-zero {
+  font-family:var(--ui-font);font-weight:400;font-style:normal;font-stretch:normal;font-synthesis:none;
+  font-size:calc(clamp(15px,5.7cqw,23px) * var(--ui-scale));line-height:1.5;
+  letter-spacing:var(--ui-tracking);max-width:100%;overflow-wrap:anywhere;
+}
+.cover-title.dojo em {font-size:1em;font-style:normal;}
+.cover-top,.cover-bottom {font-size:var(--type-small);line-height:1.65;gap:5px 10px;flex-wrap:wrap;}
+.cover-top span,.cover-bottom span {min-width:0;max-width:100%;overflow-wrap:anywhere;}
+.info {padding:15px;}
+.meta {gap:6px 12px;flex-wrap:wrap;justify-content:space-between;}
+.info h2 {font-size:var(--type-card);line-height:1.65;margin:10px 0 8px;overflow-wrap:anywhere;}
+.info p {font-size:var(--type-body);line-height:2;margin-bottom:16px;overflow-wrap:anywhere;}
+.actions {gap:8px 12px;}
+.play {min-height:44px;gap:10px;max-width:100%;min-width:0;padding:10px 12px;}
+.play span {font-size:var(--type-small);}
+.project-docs {padding:8px 15px;gap:2px 12px;}
+.project-docs a {min-height:34px;}
+.foot {overflow-wrap:anywhere;}
+.intro h1::after {content:"";display:inline-block;width:.52em;height:.9em;margin-inline-start:.25em;vertical-align:-.08em;background:currentColor;}
+/* A viewport-sized CRT shutter, independent of total document height. */
+.eg-crt {position:fixed;inset:0;z-index:2147483640;pointer-events:none;visibility:hidden;overflow:hidden;}
+.eg-crt::before,.eg-crt::after {content:"";position:absolute;left:0;right:0;height:50%;background:#090a09;}
+.eg-crt::before {top:0;transform-origin:top;}
+.eg-crt::after {bottom:0;transform-origin:bottom;}
+.eg-crt-line {position:absolute;top:calc(50% - 1px);left:0;right:0;height:2px;background:#dce6c8;transform:scaleX(0);}
+@keyframes eg-crt-shutter {0%,28%{transform:scaleY(1);}72%{transform:scaleY(.18);}100%{transform:scaleY(0);}}
+@keyframes eg-crt-line {0%{transform:scaleX(0);opacity:1;}24%{transform:scaleX(1);opacity:1;}60%{opacity:.8;}100%{transform:scaleX(1);opacity:0;}}
+@keyframes eg-cursor {0%,49%{opacity:1;}50%,100%{opacity:0;}}
+@keyframes eg-pixel-blink {0%,49%{background:var(--accent);color:#151811;}50%,100%{background:var(--bg);color:var(--accent);box-shadow:inset 0 0 0 2px var(--accent);}}
+/* Effective motion setting is resolved once by the controller, not by pointer-capability queries.
+   On is the default. Auto follows the operating system; Off disables motion. */
+body[data-motion="on"] .eg-crt.is-playing {visibility:visible;}
+body[data-motion="on"] .eg-crt.is-playing::before,body[data-motion="on"] .eg-crt.is-playing::after {animation:eg-crt-shutter calc(1.05s / var(--motion-speed)) ease-in-out both;}
+body[data-motion="on"] .eg-crt.is-playing .eg-crt-line {animation:eg-crt-line calc(1.05s / var(--motion-speed)) linear both;}
+body[data-motion="on"] .intro h1::after {animation:eg-cursor calc(1.2s / var(--motion-speed)) steps(1,end) infinite;}
+body[data-motion="on"] .game {transition:transform calc(.16s / var(--motion-speed)) ease-out,border-color calc(.16s / var(--motion-speed));}
+body[data-motion="on"] .game.is-tilted {transform:perspective(700px) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg)) translateY(-4px);border-color:var(--accent);z-index:2;}
+/* Perspective tilt on a stable brand hit area. */
+body[data-motion="on"] .mark {transition:transform calc(.16s / var(--motion-speed)) ease-out;}
+body[data-motion="on"] .brand.is-tilted .mark {transform:perspective(130px) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg)) translateY(-2px);}
+body[data-motion="on"] .brand:is(:hover,.eg-hover,:focus-visible):not(.is-tilted) .mark {transform:perspective(130px) rotateX(7deg) rotateY(-8deg) translateY(-2px);}
+body[data-motion="on"] .game:hover:not(.is-tilted) {transform:perspective(700px) rotateX(6deg) rotateY(-7deg) translateY(-4px);border-color:var(--accent);z-index:2;}
+body[data-motion="on"] .play:is(:hover,.eg-hover),body[data-motion="on"] .filters button:is(:hover,.eg-hover) {animation:eg-pixel-blink calc(1s / var(--motion-speed)) steps(1,end) infinite;}
+body[data-motion="on"] .play:focus-visible,body[data-motion="on"] .filters button:focus-visible {animation:eg-pixel-blink calc(1s / var(--motion-speed)) steps(1,end) 2;}
+body[data-motion="on"] .play:active,body[data-motion="on"] .filters button:active {background:var(--bg);color:var(--accent);box-shadow:inset 0 0 0 2px var(--accent);}
+body[data-motion="on"] .eg-tap {animation:eg-pixel-blink calc(.65s / var(--motion-speed)) steps(1,end) 1!important;}
+body[data-motion="off"] .eg-crt {display:none;}
+body[data-motion="off"] .mark,body[data-motion="off"] .game,body[data-motion="off"] .play,body[data-motion="off"] .filters button,body[data-motion="off"] .intro h1::after {animation:none!important;transition:none!important;transform:none!important;}
+#motion-choice,#motion-status {font:400 var(--type-small)/1.8 var(--ui-font);letter-spacing:1px;color:var(--muted);}
+#motion-choice select {background:var(--panel);color:var(--fg);border:1px solid var(--line);padding:6px;font:inherit;letter-spacing:inherit;min-height:36px;}
+#motion-choice[hidden],#motion-status[hidden],#crt-replay[hidden] {display:none!important;}
+#motion-status {white-space:normal;}
+@media(max-width:900px) {.top nav{gap:12px;}}
+@media(max-width:550px) {
+  .top {gap:8px;min-height:70px;}
+  .top nav {width:100%;justify-content:flex-end;}
+  .brand {font-size:var(--type-body);}
+  .intro {padding:25px 0 20px;}
+  .intro h1 {font-size:calc(23px * var(--ui-scale));}
+  .filters button {padding-inline:8px;}
+  .search input {width:100%;}
+  .catalog-tools {gap:8px;}
+  .play {flex:1;}
+}
