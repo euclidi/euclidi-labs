@@ -4,3 +4,16 @@ await send({type:'reset',fs:rate,gen:2});await send({type:'settings',n,win:1,fil
 for(let frame=0;frame<16384;frame+=1024){let samples=Float32Array.from({length:1024},(_,i)=>.5*Math.sin(2*Math.PI*1000*(frame+i)/rate));await send({type:'samples',gen:2,frame,samples,right:Float32Array.from(samples,x=>-x),channels:2});}let anti=out.filter(x=>x.type==='analysis').at(-1);check('Opposite phase stereo RMS does not cancel',anti.dbfs,-9.0309,.05);check('Opposite phase spectrum frequency',anti.dom,1000,1);check('Opposite phase stereo PSD',anti.power.reduce((s,x)=>s+x,0)*rate/n,.125,.002);check('Opposite phase correlation',anti.corr,-1,.0001);
 await send({type:'reset',fs:rate,gen:3});await send({type:'settings',n,win:1,filter:0,cut:1000,gain:1,delay:0,cal:null,channelMode:'stereo'});
 for(let frame=0;frame<16384;frame+=1024){let samples=Float32Array.from({length:1024},(_,i)=>.5*Math.sin(2*Math.PI*1000*(frame+i)/rate));await send({type:'samples',gen:3,frame,samples,right:new Float32Array(1024),channels:2});}let solo=out.filter(x=>x.type==='analysis').at(-1);check('One-sided stereo RMS',solo.dbfs,-12.0412,.05);check('One-sided peak',solo.peak,.5,.001);check('One-sided spectrum integrated power',solo.power.reduce((s,x)=>s+x,0)*rate/n,.0625,.002);console.log('PASS: stereo energy/cancellation and one-sided signal regression');
+
+for(const [tone,expected] of [[40,0],[125,1],[350,2],[1000,3],[3000,4],[6000,5],[12000,6]]){
+ await send({type:'reset',fs:rate,gen:10+expected});
+ await send({type:'settings',n,win:1,filter:0,cut:1000,gain:1,delay:0,cal:null,channelMode:'stereo'});
+ for(let frame=0;frame<16384;frame+=1024){let samples=Float32Array.from({length:1024},(_,i)=>.5*Math.sin(2*Math.PI*tone*(frame+i)/rate));await send({type:'samples',gen:10+expected,frame,samples,right:samples.slice(),channels:2});}
+ let result=out.filter(x=>x.type==='analysis').at(-1),bands=result.bands;
+ assert.equal(bands.energy.indexOf(Math.max(...bands.energy)),expected,'band assignment '+tone);
+ assert.ok(bands.energy[expected]/bands.total>.9,'band purity '+tone);
+ check('Integrated band energy '+tone,bands.total,.125,.004);
+}
+let boundary=vm.runInContext("listeningBands(Float32Array.from({length:25},(_,i)=>i===6?1:0),480,48)",ctx);
+assert.ok(boundary.energy[0]>0&&boundary.energy[1]>0,'60 Hz boundary shares bin energy');
+console.log('PASS: listening frequency bands at 40, 125, 350, 1000, 3000, 6000 and 12000 Hz, including boundary power accounting');
