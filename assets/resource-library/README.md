@@ -1,5 +1,7 @@
 # Reusable lab resources
 
+- [glTF render fixtures](gltf-render-fixtures/README.md): 14 standards samples with source hashes, feature metadata, and a repeatable validator entry point.
+
 Assets for experiments and validation; they are not loaded by ACOUSTICA or the catalog.
 
 - [Humanoid motion reference](humanoid-reference/README.md): skinned mannequin with 46 named clips for visual or animation experiments.

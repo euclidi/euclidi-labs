@@ -1,0 +1,313 @@
+{
+  "upstream_commit": "e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea",
+  "fixtures": {
+    "Triangle": {
+      "feature": "Minimal external binary geometry",
+      "entry": "Triangle/glTF/Triangle.gltf",
+      "license": "Triangle/LICENSE.md",
+      "files": {
+        "Triangle/LICENSE.md": {
+          "sha256": "4903dc013ec4c537537bd8a8446676a635f511fbb12f1d589cbdca958871cb2d",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/Triangle/LICENSE.md",
+          "bytes": 770
+        },
+        "Triangle/glTF/Triangle.bin": {
+          "sha256": "898ed7f560dca9907a80c98be57fbbc0f3a092d2e3683b964ffcfa75c549ac62",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/Triangle/glTF/Triangle.bin",
+          "bytes": 44
+        },
+        "Triangle/glTF/Triangle.gltf": {
+          "sha256": "6f4a8a1fbefbac2d0adde0800864279fd98c3f119077380e6840810ed62b6cfc",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/Triangle/glTF/Triangle.gltf",
+          "bytes": 1037
+        }
+      }
+    },
+    "AnimatedTriangle": {
+      "feature": "Separate geometry and animation buffers; node rotation",
+      "entry": "AnimatedTriangle/glTF/AnimatedTriangle.gltf",
+      "license": "AnimatedTriangle/LICENSE.md",
+      "files": {
+        "AnimatedTriangle/LICENSE.md": {
+          "sha256": "3949145843b4c4c8d17c4b2b5c403ed715ea88b8682e0d9678a1a51e0a864cda",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/AnimatedTriangle/LICENSE.md",
+          "bytes": 779
+        },
+        "AnimatedTriangle/glTF/AnimatedTriangle.gltf": {
+          "sha256": "d326af21f8d2ae6b3853f1f3e4e0d673053b1c5938659dfefe5d28c7a9f42f76",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/AnimatedTriangle/glTF/AnimatedTriangle.gltf",
+          "bytes": 1971
+        },
+        "AnimatedTriangle/glTF/AnimatedTriangle_animation.bin": {
+          "sha256": "ec3bdaac71a222034affffef8a9ec531563bc02a3720e513cd8bf852e270f99b",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/AnimatedTriangle/glTF/AnimatedTriangle_animation.bin",
+          "bytes": 100
+        },
+        "AnimatedTriangle/glTF/AnimatedTriangle_geometry.bin": {
+          "sha256": "898ed7f560dca9907a80c98be57fbbc0f3a092d2e3683b964ffcfa75c549ac62",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/AnimatedTriangle/glTF/AnimatedTriangle_geometry.bin",
+          "bytes": 44
+        }
+      }
+    },
+    "SimpleSkin": {
+      "feature": "Joint weights, animation and external inverse bind matrices",
+      "entry": "SimpleSkin/glTF/SimpleSkin.gltf",
+      "license": "SimpleSkin/LICENSE.md",
+      "files": {
+        "SimpleSkin/LICENSE.md": {
+          "sha256": "92caa6f47943c19aaaf413af6e2c201d8dbeebf91e643166edf63b262f988c38",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/SimpleSkin/LICENSE.md",
+          "bytes": 773
+        },
+        "SimpleSkin/glTF/SimpleSkin.gltf": {
+          "sha256": "8d92e9888340eb98e82a65a1f8b037d9a1d9f09e5fd0b6ba6d40fd93700b3239",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/SimpleSkin/glTF/SimpleSkin.gltf",
+          "bytes": 2386
+        },
+        "SimpleSkin/glTF/SimpleSkin_animation.bin": {
+          "sha256": "ff21b1bc3d0abbe53f7665060ec6c22d873b6e85a7669171a2b6b8ae01c39347",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/SimpleSkin/glTF/SimpleSkin_animation.bin",
+          "bytes": 240
+        },
+        "SimpleSkin/glTF/SimpleSkin_geometry.bin": {
+          "sha256": "35f0ca6bc07976c0aadc163d4737758989cfcc9870a99800004c4478fe698b63",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/SimpleSkin/glTF/SimpleSkin_geometry.bin",
+          "bytes": 168
+        },
+        "SimpleSkin/glTF/SimpleSkin_inverseBindMatrices.bin": {
+          "sha256": "5844ab221cd2ad367420a248f6387b46e5f8498604427730a37ee96b4d4ec599",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/SimpleSkin/glTF/SimpleSkin_inverseBindMatrices.bin",
+          "bytes": 128
+        },
+        "SimpleSkin/glTF/SimpleSkin_skinningData.bin": {
+          "sha256": "413bc8a8c0da673df767874e6f05f0b00c9261756a08586b9d555bd5535414b5",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/SimpleSkin/glTF/SimpleSkin_skinningData.bin",
+          "bytes": 320
+        }
+      }
+    },
+    "SimpleMorph": {
+      "feature": "Basic animated morph weights",
+      "entry": "SimpleMorph/glTF/SimpleMorph.gltf",
+      "license": "SimpleMorph/LICENSE.md",
+      "files": {
+        "SimpleMorph/LICENSE.md": {
+          "sha256": "47bab60daed29bd8e23aa7390b1c1823afa871898c5adafaf94afe0e37d7c6a8",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/SimpleMorph/LICENSE.md",
+          "bytes": 774
+        },
+        "SimpleMorph/glTF/SimpleMorph.gltf": {
+          "sha256": "99ec94e30b326077edb3958f5d2b68b4d8ad181529da86f5adf883065e68a2d2",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/SimpleMorph/glTF/SimpleMorph.gltf",
+          "bytes": 2737
+        },
+        "SimpleMorph/glTF/SimpleMorph_animation.bin": {
+          "sha256": "bba8e6c8579b04fca092057a83266582a2f22fbe390d16f0eb92b577c60f9776",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/SimpleMorph/glTF/SimpleMorph_animation.bin",
+          "bytes": 60
+        },
+        "SimpleMorph/glTF/SimpleMorph_geometry.bin": {
+          "sha256": "44e308fa30e6864c143c44d43bcf0dd3a48c0e21b8abd33344cf4949166c12ea",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/SimpleMorph/glTF/SimpleMorph_geometry.bin",
+          "bytes": 116
+        }
+      }
+    },
+    "SimpleMeshes": {
+      "feature": "Two mesh nodes with indexed and attributed geometry",
+      "entry": "SimpleMeshes/glTF/SimpleMeshes.gltf",
+      "license": "SimpleMeshes/LICENSE.md",
+      "files": {
+        "SimpleMeshes/LICENSE.md": {
+          "sha256": "1b36a5313f33d123fb4647bb6543a66736d08042caff1325397546408c4ed3a3",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/SimpleMeshes/LICENSE.md",
+          "bytes": 775
+        },
+        "SimpleMeshes/glTF/SimpleMeshes.bin": {
+          "sha256": "63b006e58bdbc47206ea303ef2f630139e39a0c52a8454745ff6eb4f32df8365",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/SimpleMeshes/glTF/SimpleMeshes.bin",
+          "bytes": 80
+        },
+        "SimpleMeshes/glTF/SimpleMeshes.gltf": {
+          "sha256": "9c750a9e6a9ed3ba782b99c733a8280e57e45299b37627c16e9270705aa58342",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/SimpleMeshes/glTF/SimpleMeshes.gltf",
+          "bytes": 1359
+        }
+      }
+    },
+    "RiggedSimple": {
+      "feature": "Embedded skinned mesh and skeletal animation",
+      "entry": "RiggedSimple/glTF-Binary/RiggedSimple.glb",
+      "license": "RiggedSimple/LICENSE.md",
+      "files": {
+        "RiggedSimple/LICENSE.md": {
+          "sha256": "4343fbd97e5ecfc4c872a85cb1d755a3006f8848e15135fd6c4534839909bdbb",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/RiggedSimple/LICENSE.md",
+          "bytes": 781
+        },
+        "RiggedSimple/glTF-Binary/RiggedSimple.glb": {
+          "sha256": "3a79dabb67bb0cd598a18d08b954d9d357c27c30672f82ef5d3f4e7fe6ca3401",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/RiggedSimple/glTF-Binary/RiggedSimple.glb",
+          "bytes": 15104
+        }
+      }
+    },
+    "AnimatedMorphCube": {
+      "feature": "Embedded animated morph target",
+      "entry": "AnimatedMorphCube/glTF-Binary/AnimatedMorphCube.glb",
+      "license": "AnimatedMorphCube/LICENSE.md",
+      "files": {
+        "AnimatedMorphCube/LICENSE.md": {
+          "sha256": "158a0614b84cd26077483730bd105ee62d5a8db2a7e4267db911c77a2ee0717c",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/AnimatedMorphCube/LICENSE.md",
+          "bytes": 781
+        },
+        "AnimatedMorphCube/glTF-Binary/AnimatedMorphCube.glb": {
+          "sha256": "214ee56160a50dbf22543a1d66dbf860986e87f0efac3d89feac1359d0e6aeab",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/AnimatedMorphCube/glTF-Binary/AnimatedMorphCube.glb",
+          "bytes": 6752
+        }
+      }
+    },
+    "MorphPrimitivesTest": {
+      "feature": "Morph targets over multiple primitives",
+      "entry": "MorphPrimitivesTest/glTF-Binary/MorphPrimitivesTest.glb",
+      "license": "MorphPrimitivesTest/LICENSE.md",
+      "files": {
+        "MorphPrimitivesTest/LICENSE.md": {
+          "sha256": "1833fb1fc75ec566bab1a3c447fcbb33b3237953003f933692b99aea945633bc",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/MorphPrimitivesTest/LICENSE.md",
+          "bytes": 937
+        },
+        "MorphPrimitivesTest/glTF-Binary/MorphPrimitivesTest.glb": {
+          "sha256": "2a5ed6470aca41edc813ef5b7eecf2af53264d8e0ab9e6f32156d54245ca18cf",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/MorphPrimitivesTest/glTF-Binary/MorphPrimitivesTest.glb",
+          "bytes": 53656
+        }
+      }
+    },
+    "BoxVertexColors": {
+      "feature": "Vertex color attributes",
+      "entry": "BoxVertexColors/glTF-Binary/BoxVertexColors.glb",
+      "license": "BoxVertexColors/LICENSE.md",
+      "files": {
+        "BoxVertexColors/LICENSE.md": {
+          "sha256": "47651d5d65368e28eba54f7b03460dc320f673d738d195421b28c6d5fcdb963b",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/BoxVertexColors/LICENSE.md",
+          "bytes": 779
+        },
+        "BoxVertexColors/glTF-Binary/BoxVertexColors.glb": {
+          "sha256": "9c48227f33b0ba2fbcf23b98ebf60d1c8ae0c6e6c5281e0aa3cc58affee10382",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/BoxVertexColors/glTF-Binary/BoxVertexColors.glb",
+          "bytes": 1924
+        }
+      }
+    },
+    "InterpolationTest": {
+      "feature": "STEP, LINEAR and CUBICSPLINE animation",
+      "entry": "InterpolationTest/glTF-Binary/InterpolationTest.glb",
+      "license": "InterpolationTest/LICENSE.md",
+      "files": {
+        "InterpolationTest/LICENSE.md": {
+          "sha256": "460dc48df028a478d94aee1b8451132135cebdea15065bbd6d81dae1808b0dcb",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/InterpolationTest/LICENSE.md",
+          "bytes": 780
+        },
+        "InterpolationTest/glTF-Binary/InterpolationTest.glb": {
+          "sha256": "a86eb331b4a083715e75fe19a1f747eac5692d5b9ff120f1eaa457c23ba72bca",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/InterpolationTest/glTF-Binary/InterpolationTest.glb",
+          "bytes": 7952
+        }
+      }
+    },
+    "TextureCoordinateTest": {
+      "feature": "Texture coordinate selection",
+      "entry": "TextureCoordinateTest/glTF-Binary/TextureCoordinateTest.glb",
+      "license": "TextureCoordinateTest/LICENSE.md",
+      "files": {
+        "TextureCoordinateTest/LICENSE.md": {
+          "sha256": "bf3b3f5a2c65a06c73cd5f89be8f99df78aeb9248d0f5759c99baeba72bc235f",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/TextureCoordinateTest/LICENSE.md",
+          "bytes": 785
+        },
+        "TextureCoordinateTest/glTF-Binary/TextureCoordinateTest.glb": {
+          "sha256": "fe75a63a0423c9a682bf46c3045b6328ae9c55abefc9a50adf3ec1d6dc6ea3b9",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/TextureCoordinateTest/glTF-Binary/TextureCoordinateTest.glb",
+          "bytes": 14232
+        }
+      }
+    },
+    "TextureSettingsTest": {
+      "feature": "Texture sampler and wrap modes",
+      "entry": "TextureSettingsTest/glTF-Binary/TextureSettingsTest.glb",
+      "license": "TextureSettingsTest/LICENSE.md",
+      "files": {
+        "TextureSettingsTest/LICENSE.md": {
+          "sha256": "40c4c4b0e904799d1ae45975ceb0c94c28956b5e444b72b3838ac7a75168dea7",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/TextureSettingsTest/LICENSE.md",
+          "bytes": 789
+        },
+        "TextureSettingsTest/glTF-Binary/TextureSettingsTest.glb": {
+          "sha256": "44013a0602cbbdcaf703905ed47cc6b6fb49f067d7de0e1a0a568a5bbfa9d769",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/TextureSettingsTest/glTF-Binary/TextureSettingsTest.glb",
+          "bytes": 42840
+        }
+      }
+    },
+    "MetalRoughSpheres": {
+      "feature": "Metallic/roughness render comparison",
+      "entry": "MetalRoughSpheres/glTF-Binary/MetalRoughSpheres.glb",
+      "license": "MetalRoughSpheres/LICENSE.md",
+      "files": {
+        "MetalRoughSpheres/LICENSE.md": {
+          "sha256": "3fb5f670bda1b4a02382c61a92cfd3f85ff744dffa3cd203ec0fc734ab8623fc",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/MetalRoughSpheres/LICENSE.md",
+          "bytes": 787
+        },
+        "MetalRoughSpheres/glTF-Binary/MetalRoughSpheres.glb": {
+          "sha256": "450c05557b0823a10835e32c05caf77a7b175eba94516555c1c9bb084f563f01",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/MetalRoughSpheres/glTF-Binary/MetalRoughSpheres.glb",
+          "bytes": 11221356
+        }
+      }
+    },
+    "TwoSidedPlane": {
+      "feature": "Sidedness and external PBR texture references",
+      "entry": "TwoSidedPlane/glTF/TwoSidedPlane.gltf",
+      "license": "TwoSidedPlane/LICENSE.md",
+      "files": {
+        "TwoSidedPlane/LICENSE.md": {
+          "sha256": "84718db5ccd83e5edd940a5ff4dcd6c584f50c95682475cf1ecd54ccae8ebbc1",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/TwoSidedPlane/LICENSE.md",
+          "bytes": 777
+        },
+        "TwoSidedPlane/glTF/TwoSidedPlane.bin": {
+          "sha256": "b5773c232084d848db9087978e97ca1ea4ffc1e955bd39c5bfc523c3fa577bc9",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/TwoSidedPlane/glTF/TwoSidedPlane.bin",
+          "bytes": 300
+        },
+        "TwoSidedPlane/glTF/TwoSidedPlane.gltf": {
+          "sha256": "0aafbfd9713131f7e477739a98e643f16a61248aa06ed7212db34516c7309d12",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/TwoSidedPlane/glTF/TwoSidedPlane.gltf",
+          "bytes": 3927
+        },
+        "TwoSidedPlane/glTF/TwoSidedPlane_BaseColor.png": {
+          "sha256": "7587c655a189fc1078fb19e05703cf9e44000d5181f592d958be23600eff36bc",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/TwoSidedPlane/glTF/TwoSidedPlane_BaseColor.png",
+          "bytes": 44455
+        },
+        "TwoSidedPlane/glTF/TwoSidedPlane_MetallicRoughness.png": {
+          "sha256": "66b22936f67e0dfa53bca026f191a5cd2d1a585341d481b88104d0010dd4e3ae",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/TwoSidedPlane/glTF/TwoSidedPlane_MetallicRoughness.png",
+          "bytes": 16360
+        },
+        "TwoSidedPlane/glTF/TwoSidedPlane_Normal.png": {
+          "sha256": "8cdd7cd63dbfb2834b72e2420cfa47f6f4c84039635ef9abe3d1a1cb58fa5e51",
+          "source": "https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/e124e8d8d7330a5372bc2b4d00d39a4a9d7997ea/Models/TwoSidedPlane/glTF/TwoSidedPlane_Normal.png",
+          "bytes": 22653
+        }
+      }
+    }
+  }
+}
