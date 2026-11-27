@@ -4,7 +4,7 @@ Independent catalog for interactive experiments, scientific simulations, enginee
 
 **[Catalog](https://euclidi.github.io/euclidi-labs/)** · [Mechanical library](https://euclidi.github.io/euclidi-labs/library/) · [Euclidi Games](https://euclidi.github.io/euclidi-games/)
 
-The repository is private; Pages publication depends on your GitHub plan and Pages settings. No experiments are registered yet.
+The repository is private; Pages publication depends on your GitHub plan and Pages settings. The project index below is generated from registered project manifests.
 
 ## Project index
 

@@ -16,6 +16,12 @@ jobs:
           node --check assets/brand/catalog-motion.js
           node --input-type=module --check < library/library.js
           python3 tools/catalog.py --stage /tmp/labs-site
+      - name: Browser smoke tests
+        run: |
+          npm install --no-save --no-package-lock playwright@1.51.1
+          npx playwright install --with-deps chromium
+          python3 -m http.server 8123 --directory /tmp/labs-site > /tmp/labs-http.log 2>&1 &
+          node tests/catalog-smoke.mjs
       - if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v3
         with:

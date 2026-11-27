@@ -16,4 +16,4 @@ New project checklist:
 4. Update roadmap and status as implementation progresses; preserve earlier versions and scope records. Do not advertise an archived project as active.
 5. Run the documentation audit (`python3 tools/catalog.py --check`) and project tests. Review Pages deployment and actual project functionality before certifying a release.
 
-CI rejects missing or empty required documents and missing documentation links for catalog cards. This is a reporting check, not a configured GitHub branch-protection or Pages publication gate; administrators may make it required in repository settings. Content accuracy remains a human/agent review responsibility.
+CI checks registered projects for required documents, valid metadata and a current generated catalog. The generator validates presence and nonempty content; reviewers must assess substance. This is a reporting check, not a configured GitHub branch-protection or Pages publication gate; administrators may make it required in repository settings. Content accuracy remains a human/agent review responsibility.
