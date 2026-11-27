@@ -2,7 +2,7 @@
 
 Independent catalog for interactive experiments, scientific simulations, engineering prototypes, research tools and visual learning.
 
-**[Catalog](https://euclidi.github.io/euclidi-labs/)** · [Euclidi Games](https://euclidi.github.io/euclidi-games/)
+**[Catalog](https://euclidi.github.io/euclidi-labs/)** · [Euclidi Games catalog](https://euclidi.github.io/euclidi-games/) · [Euclidi Games repository](https://github.com/euclidi/euclidi-games)
 
 The project index below is generated from registered project manifests.
 

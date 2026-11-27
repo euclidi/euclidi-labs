@@ -9,7 +9,11 @@ try {
     await page.goto(base,{waitUntil:'networkidle'});
     const count=await page.locator('article.game').count();
     assert.equal(await page.locator('#count').textContent(),String(count).padStart(2,'0')+(count===1?' PROJECT':' PROJECTS'));
-    assert.equal(await page.locator('a[href="./library/"]').count(),0);
+
+   assert.equal(await page.locator('a[href="./library/"]').count(),0);
+   assert.equal(await page.locator('header a[href="https://euclidi.github.io/euclidi-games/"]').count(),1);
+   assert.equal(await page.locator('header a[href="https://github.com/euclidi/euclidi-labs"]').count(),1);
+   assert.equal(await page.locator('footer a[href="https://github.com/euclidi/euclidi-games"]').count(),1);
     assert.equal(await page.locator('.mark').evaluate(i=>i.tagName.toLowerCase()==='svg'&&i.getBBox().width>0),true);
     for(const icon of ['el.svg','favicon.svg','favicon-off.svg','el-16.png','el-32.png','el-16-off.png','el-32-off.png','el-180.png','el-192.png']){
       const response=await page.request.get(base+'assets/brand/'+icon);assert.equal(response.status(),200);
