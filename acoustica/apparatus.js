@@ -22,22 +22,20 @@ export class Apparatus {
  base(w,d){this.box(w,.13,d,0,-.22,0,this.materials.base);this.box(w*.98,.012,d*.98,0,-.148,0,this.materials.dark);for(let x of [-w*.39,w*.39])for(let z of [-d*.38,d*.38])this.box(.25,.07,.24,x,-.32,z,this.materials.rubber);for(let x of [-w*.46,w*.46])for(let z of [-d*.44,d*.44])this.screw(x,-.138,z);}
  fieldMesh(w,h,width,depth,y){let g=new THREE.PlaneGeometry(width,depth,w-1,h-1);g.rotateX(-Math.PI/2);g.setAttribute('color',new THREE.BufferAttribute(new Float32Array(w*h*3),3));let m=new THREE.MeshStandardMaterial({vertexColors:true,side:THREE.DoubleSide,roughness:.48,metalness:.15});this.field=this.mesh(g,m,0,y,0);this.field.frustumCulled=false;this.field.receiveShadow=true;}
  rebuild(mode,result,cfg){
-  this.clear();this.mode=mode;this.shapeKey=[mode,result?.w,result?.h,!!cfg.closed,!!cfg.barrier,cfg.srcX,cfg.srcY,cfg.length].join(':');const M=this.materials,W=2.35,D=1.47;
+  this.clear();this.mode=mode;this.shapeKey=[mode,result?.w,result?.h,!!cfg.closed,!!cfg.barrier,cfg.srcX,cfg.srcY,cfg.length,cfg.geometry,cfg.structure,cfg.resonator].join(':');const M=this.materials,W=2.35,D=1.47;
   if(mode==='plate'||mode==='ripple'){
    this.base(2.85,1.99);
-   for(let x of [-W/2,W/2])this.box(.085,.15,D+.09,x,-.06,0,M.metal);
-   for(let z of [-D/2,D/2])this.box(W+.08,.15,.085,0,-.06,z,M.metal);
-   for(let x of [-W/2,W/2])for(let z of [-D/2,D/2]){this.box(.18,.12,.18,x,-.07,z,M.dark);this.screw(x,.005,z);}
-   if(mode==='plate'){this.cyl(.18,.09,-W*.08,-.1,-D*.1,M.brass);this.cyl(.075,.07,-W*.08,-.035,-D*.1,M.metal);}
+   if(result.mask){this.ring(D/2+.025,.045,0,-.015,0,'y',M.metal);for(let j=0;j<8;j++){let t=2*Math.PI*j/8;this.screw((D/2+.025)*Math.cos(t),.035,(D/2+.025)*Math.sin(t));}}else{for(let x of [-W/2,W/2])this.box(.085,.15,D+.09,x,-.06,0,M.metal);for(let z of [-D/2,D/2])this.box(W+.08,.15,.085,0,-.06,z,M.metal);for(let x of [-W/2,W/2])for(let z of [-D/2,D/2]){this.box(.18,.12,.18,x,-.07,z,M.dark);this.screw(x,.005,z);}}
+   if(mode==='plate'){let sx=((cfg.srcX??.42)-.5)*W,sz=((cfg.srcY??.4)-.5)*D;this.cyl(.18,.09,sx,-.1,sz,M.brass);this.cyl(.075,.07,sx,-.035,sz,M.metal);}
    else {for(let x of [-W/2,W/2])this.box(.035,.17,D,x,.06,0,M.glass);for(let z of [-D/2,D/2])this.box(W,.17,.035,0,.06,z,M.glass);}
-   this.fieldMesh(result.w,result.h,W,D,.015);
+   this.fieldMesh(result.w,result.h,W,D,.015);if(result.mask){let g=this.field.geometry,old=g.index.array,ids=[];for(let i=0;i<old.length;i+=3){if(result.mask[old[i]]&&result.mask[old[i+1]]&&result.mask[old[i+2]])ids.push(old[i],old[i+1],old[i+2]);}g.setIndex(ids);}
    if(mode==='plate'){let g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(new Float32Array((result.sand?.length||0)*3),3));this.particles=new THREE.Points(g,new THREE.PointsMaterial({color:0xd9bd85,size:.018,sizeAttenuation:true}));this.root.add(this.particles);}
   }else if(mode==='field'){
    this.base(2.85,1.99);this.fieldMesh(result.w,result.h,W,D,.015);
    if(cfg.barrier){let x=-W/2+85/(result.w-1)*W;for(let [a,b] of [[0,40],[60,result.h-1]]){let z=-D/2+(a+b)*.5/(result.h-1)*D;this.box(.035,.15,(b-a)/(result.h-1)*D,x,.09,z,M.metal);}}
    let sx=-W/2+(cfg.srcX??25/(result.w-1))*W,sz=-D/2+(cfg.srcY??50/(result.h-1))*D;this.cyl(.055,.075,sx,.065,sz,M.brass);this.ring(.052,.008,sx,.11,sz);
   }else if(mode==='tube'){
-   this.base(3.05,.94);let r=.26,L=2.55;
+   this.base(3.05,.94);let r=.26,L=2.55;if(['helmholtz','coupled'].includes(cfg.resonator)){let centers=cfg.resonator==='coupled'?[-.64,.64]:[0];for(let cx of centers){this.box(cfg.resonator==='coupled'?1.1:2.3,.44,.65,cx,.12,0,M.glass);this.box(cfg.resonator==='coupled'?1.1:2.3,.045,.65,cx,-.115,0,M.metal);this.cyl(.095,.25,cx,.45,0,M.glass);this.ring(.095,.016,cx,.585,0,'y');}if(centers.length===2){let neck=this.cyl(.085,.18,0,.12,0,M.glass);neck.rotation.z=Math.PI/2;}this.fieldMesh(result.w,result.h,2.35,.55,.34);this.render();return;}
    let tube=this.mesh(new THREE.CylinderGeometry(r,r,L,64,1,true),M.glass,0,.32,0);tube.rotation.z=Math.PI/2;
    this.fieldMesh(result.w,result.h,L,.36,.32);
    for(let x of [-L/2,L/2]){this.ring(r,.026,x,.32,0,'x');this.ring(r*.9,.008,x,.32,0,'x',M.dark);}
@@ -50,7 +48,7 @@ export class Apparatus {
  }
  makeTract(areas,length){let M=this.materials,total=2.25,scale=total/length,seg=total/areas.length,prev=null;for(let i=0;i<areas.length;i++){let r=Math.sqrt(areas[i]*1e-4/Math.PI)*scale,x=-total/2+(i+.5)*seg;let c=this.mesh(new THREE.CylinderGeometry(r,r,seg-.006,48,1,true),M.glass,x,.2,0);c.rotation.z=Math.PI/2;this.ring(r,.014,x-seg/2,.2,0,'x',M.metal);if(i===areas.length-1)this.ring(r,.014,x+seg/2,.2,0,'x',M.metal);if(prev!==null){let a=this.mesh(new THREE.RingGeometry(Math.min(r,prev),Math.max(r,prev),48),M.dark,x-seg/2,.2,0);a.rotation.y=Math.PI/2;}prev=r;}}
  update(mode,result,cfg,scale){
-  if(!result)return;let key=[mode,result.w,result.h,!!cfg.closed,!!cfg.barrier,cfg.srcX,cfg.srcY,cfg.length].join(':');
+  if(!result)return;let key=[mode,result.w,result.h,!!cfg.closed,!!cfg.barrier,cfg.srcX,cfg.srcY,cfg.length,cfg.geometry,cfg.structure,cfg.resonator].join(':');
   if(key!==this.shapeKey||(mode==='voice'&&JSON.stringify(result.areas)!==this.areasKey)){this.rebuild(mode,result,cfg);this.areasKey=JSON.stringify(result.areas);}
   if(result!==this.last||scale!==this.lastScale){
    if(this.field&&result.out){let g=this.field.geometry,p=g.attributes.position,c=g.attributes.color,displace=['plate','ripple'].includes(mode),max=Math.max(1e-14,scale||result.max),lo=new THREE.Color(0x2c6fa7),zero=new THREE.Color(0x404348),hi=new THREE.Color(0xc88744),color=new THREE.Color();for(let i=0;i<result.out.length;i++){let v=clamp(result.out[i]/max,-1,1);p.setY(i,displace?v*.075:0);color.copy(zero).lerp(v<0?lo:hi,Math.abs(v));c.setXYZ(i,color.r,color.g,color.b);}p.needsUpdate=true;c.needsUpdate=true;if(displace)g.computeVertexNormals();if(this.particles&&result.sand){let a=this.particles.geometry.attributes.position;for(let i=0;i<result.sand.length;i++){let s=result.sand[i],x=Math.round(s[0]*(result.w-1)),y=Math.round(s[1]*(result.h-1)),v=clamp(result.out[y*result.w+x]/max,-1,1);a.setXYZ(i,(s[0]-.5)*2.35,.025+v*.075,(s[1]-.5)*1.47);}a.needsUpdate=true;}}

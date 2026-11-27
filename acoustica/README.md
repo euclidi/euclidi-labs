@@ -28,3 +28,6 @@ Use 3D apparatus in a physics lab to view the calculated model from an orbitable
 
 ### Model time and input
 Live and buffered modes consume the routed samples in timestamp order. If the simulation falls behind the bounded buffer, it resets and reports skipped frames. Offline file mode consumes the first 60 seconds of a decoded file without repeating samples (raw channel mix, not the patch route). Pause, single-step and reset expose numerical time. Source/probe coordinates are normalized model coordinates. Fidelity currently adapts batch size, not spatial grid resolution.
+
+### Expanded model controls
+Cymatics supports a simply supported rectangle or circular plate/membrane; circular diameter is the domain height. Resonance includes ideal/end-corrected tubes and lumped single/paired Helmholtz cavities. The vocal lab's Analyze modeled voice button synthesizes a normalized glottal signal through the configured oral/nasal waveguide and sends it to the instruments; monitoring remains opt-in. These are linear reduced-order models with explicitly limited geometries.

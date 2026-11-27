@@ -26,6 +26,7 @@ jobs:
           node acoustica/test-advanced.mjs
           node acoustica/test-physics.mjs
           node acoustica/test-stream.mjs
+          node acoustica/test-models.mjs
           node tests/acoustica-smoke.mjs
       - if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v3

@@ -13,3 +13,5 @@ Iteration 2 advances ordered patch routing, RBJ filters, stereo WAV, Burg envelo
 Three.js r170 now vendored, initial physical representations and fallback added. Full art/geometry QA, dedicated WebGL2 measurement plots, WebGPU compute, and advanced model/geometry completion remain.
 
 The timebase now uses bounded sample streaming and offline files, with FIR and single-step controls. Full adaptive spatial refinement, rigorous anti-alias stopband validation, complete offline recordings and model/solver acceptance remain.
+
+Physical model iteration adds circle/membrane eigenmodes, end-corrected and lumped resonators, and voice waveguide synthesis. Full arbitrary geometry, realistic grain contacts, calibrated coupling and independent cross-reference tests remain.
