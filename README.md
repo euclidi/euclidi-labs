@@ -14,6 +14,7 @@ The project index below is generated from registered project manifests.
 
 ## Development
 
+- [Reusable lab assets and development resources](assets/resource-library/README.md)
 - [Agent rules](AGENTS.md)
 - [Documentation standard](docs/PROJECT_DOCUMENTATION.md)
 - [Templates](docs/templates/)
