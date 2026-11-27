@@ -22,3 +22,6 @@ Serve this directory over HTTPS or localhost; opening `index.html` from a file U
 
 ### Patch bay and saved setup
 Open Patch bay from Signal Route; add a module, choose source taps or earlier module outputs, set parameters, and apply. The final output replaces the standard signal route for analysis and experiments; the raw input remains the recording/monitor source. Save/Restore setup stores controls and patch nodes locally in IndexedDB. WAV preserves one or two input channels. For phase, use a stereo source with a coherent dominant tone. The fixed field scale is available for simulated fields; voice transfer response is normalized separately.
+
+### Three-dimensional apparatus
+Use 3D apparatus in a physics lab to view the calculated model from an orbitable camera. Drag to orbit, scroll to zoom, switch back to the 2D field for quantitative plots. Three.js r170 is bundled locally with its MIT license. Deformation height is exaggerated; the renderer is not a 3D propagation solver.

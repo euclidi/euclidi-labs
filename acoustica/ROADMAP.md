@@ -9,3 +9,5 @@ The following are release blockers, not new approval gates. Complete approved sc
 5. Acceptance and delivery: all numerical fixtures vs reference tools; 30-minute capture, latency, performance, memory, drop, hardware calibration, accessible interactions, input error recovery, offline assets and release documentation. Run catalog generator/check and real interactive playtest, then publish through existing Labs branch deployment and verify URL/version. Do not claim production certification.
 
 Iteration 2 advances ordered patch routing, RBJ filters, stereo WAV, Burg envelope estimation, phase, pitch range and setup persistence. Full graph feedback, calibrated response correction and confidence/ground-truth tests remain. CI smoke for iteration 1 passed; repeat for iteration 2 before publishing.
+
+Three.js r170 now vendored, initial physical representations and fallback added. Full art/geometry QA, dedicated WebGL2 measurement plots, WebGPU compute, and advanced model/geometry completion remain.
