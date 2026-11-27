@@ -25,3 +25,6 @@ Open Patch bay from Signal Route; add a module, choose source taps or earlier mo
 
 ### Three-dimensional apparatus
 Use 3D apparatus in a physics lab to view the calculated model from an orbitable camera. Drag to orbit, scroll to zoom, switch back to the 2D field for quantitative plots. Three.js r170 is bundled locally with its MIT license. Deformation height is exaggerated; the renderer is not a 3D propagation solver.
+
+### Model time and input
+Live and buffered modes consume the routed samples in timestamp order. If the simulation falls behind the bounded buffer, it resets and reports skipped frames. Offline file mode consumes the first 60 seconds of a decoded file without repeating samples (raw channel mix, not the patch route). Pause, single-step and reset expose numerical time. Source/probe coordinates are normalized model coordinates. Fidelity currently adapts batch size, not spatial grid resolution.

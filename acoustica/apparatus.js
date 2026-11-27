@@ -22,7 +22,7 @@ export class Apparatus {
  base(w,d){this.box(w,.13,d,0,-.22,0,this.materials.base);this.box(w*.98,.012,d*.98,0,-.148,0,this.materials.dark);for(let x of [-w*.39,w*.39])for(let z of [-d*.38,d*.38])this.box(.25,.07,.24,x,-.32,z,this.materials.rubber);for(let x of [-w*.46,w*.46])for(let z of [-d*.44,d*.44])this.screw(x,-.138,z);}
  fieldMesh(w,h,width,depth,y){let g=new THREE.PlaneGeometry(width,depth,w-1,h-1);g.rotateX(-Math.PI/2);g.setAttribute('color',new THREE.BufferAttribute(new Float32Array(w*h*3),3));let m=new THREE.MeshStandardMaterial({vertexColors:true,side:THREE.DoubleSide,roughness:.48,metalness:.15});this.field=this.mesh(g,m,0,y,0);this.field.frustumCulled=false;this.field.receiveShadow=true;}
  rebuild(mode,result,cfg){
-  this.clear();this.mode=mode;this.shapeKey=[mode,result?.w,result?.h,!!cfg.closed,!!cfg.barrier].join(':');const M=this.materials,W=2.35,D=1.47;
+  this.clear();this.mode=mode;this.shapeKey=[mode,result?.w,result?.h,!!cfg.closed,!!cfg.barrier,cfg.srcX,cfg.srcY,cfg.length].join(':');const M=this.materials,W=2.35,D=1.47;
   if(mode==='plate'||mode==='ripple'){
    this.base(2.85,1.99);
    for(let x of [-W/2,W/2])this.box(.085,.15,D+.09,x,-.06,0,M.metal);
@@ -35,7 +35,7 @@ export class Apparatus {
   }else if(mode==='field'){
    this.base(2.85,1.99);this.fieldMesh(result.w,result.h,W,D,.015);
    if(cfg.barrier){let x=-W/2+85/(result.w-1)*W;for(let [a,b] of [[0,40],[60,result.h-1]]){let z=-D/2+(a+b)*.5/(result.h-1)*D;this.box(.035,.15,(b-a)/(result.h-1)*D,x,.09,z,M.metal);}}
-   let sx=-W/2+25/(result.w-1)*W,sz=-D/2+50/(result.h-1)*D;this.cyl(.055,.075,sx,.065,sz,M.brass);this.ring(.052,.008,sx,.11,sz);
+   let sx=-W/2+(cfg.srcX??25/(result.w-1))*W,sz=-D/2+(cfg.srcY??50/(result.h-1))*D;this.cyl(.055,.075,sx,.065,sz,M.brass);this.ring(.052,.008,sx,.11,sz);
   }else if(mode==='tube'){
    this.base(3.05,.94);let r=.26,L=2.55;
    let tube=this.mesh(new THREE.CylinderGeometry(r,r,L,64,1,true),M.glass,0,.32,0);tube.rotation.z=Math.PI/2;
@@ -50,7 +50,7 @@ export class Apparatus {
  }
  makeTract(areas,length){let M=this.materials,total=2.25,scale=total/length,seg=total/areas.length,prev=null;for(let i=0;i<areas.length;i++){let r=Math.sqrt(areas[i]*1e-4/Math.PI)*scale,x=-total/2+(i+.5)*seg;let c=this.mesh(new THREE.CylinderGeometry(r,r,seg-.006,48,1,true),M.glass,x,.2,0);c.rotation.z=Math.PI/2;this.ring(r,.014,x-seg/2,.2,0,'x',M.metal);if(i===areas.length-1)this.ring(r,.014,x+seg/2,.2,0,'x',M.metal);if(prev!==null){let a=this.mesh(new THREE.RingGeometry(Math.min(r,prev),Math.max(r,prev),48),M.dark,x-seg/2,.2,0);a.rotation.y=Math.PI/2;}prev=r;}}
  update(mode,result,cfg,scale){
-  if(!result)return;let key=[mode,result.w,result.h,!!cfg.closed,!!cfg.barrier].join(':');
+  if(!result)return;let key=[mode,result.w,result.h,!!cfg.closed,!!cfg.barrier,cfg.srcX,cfg.srcY,cfg.length].join(':');
   if(key!==this.shapeKey||(mode==='voice'&&JSON.stringify(result.areas)!==this.areasKey)){this.rebuild(mode,result,cfg);this.areasKey=JSON.stringify(result.areas);}
   if(result!==this.last||scale!==this.lastScale){
    if(this.field&&result.out){let g=this.field.geometry,p=g.attributes.position,c=g.attributes.color,displace=['plate','ripple'].includes(mode),max=Math.max(1e-14,scale||result.max),lo=new THREE.Color(0x2c6fa7),zero=new THREE.Color(0x404348),hi=new THREE.Color(0xc88744),color=new THREE.Color();for(let i=0;i<result.out.length;i++){let v=clamp(result.out[i]/max,-1,1);p.setY(i,displace?v*.075:0);color.copy(zero).lerp(v<0?lo:hi,Math.abs(v));c.setXYZ(i,color.r,color.g,color.b);}p.needsUpdate=true;c.needsUpdate=true;if(displace)g.computeVertexNormals();if(this.particles&&result.sand){let a=this.particles.geometry.attributes.position;for(let i=0;i<result.sand.length;i++){let s=result.sand[i],x=Math.round(s[0]*(result.w-1)),y=Math.round(s[1]*(result.h-1)),v=clamp(result.out[y*result.w+x]/max,-1,1);a.setXYZ(i,(s[0]-.5)*2.35,.025+v*.075,(s[1]-.5)*1.47);}a.needsUpdate=true;}}

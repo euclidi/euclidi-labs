@@ -11,3 +11,5 @@ The following are release blockers, not new approval gates. Complete approved sc
 Iteration 2 advances ordered patch routing, RBJ filters, stereo WAV, Burg envelope estimation, phase, pitch range and setup persistence. Full graph feedback, calibrated response correction and confidence/ground-truth tests remain. CI smoke for iteration 1 passed; repeat for iteration 2 before publishing.
 
 Three.js r170 now vendored, initial physical representations and fallback added. Full art/geometry QA, dedicated WebGL2 measurement plots, WebGPU compute, and advanced model/geometry completion remain.
+
+The timebase now uses bounded sample streaming and offline files, with FIR and single-step controls. Full adaptive spatial refinement, rigorous anti-alias stopband validation, complete offline recordings and model/solver acceptance remain.
