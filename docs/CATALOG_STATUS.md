@@ -1,3 +1,5 @@
 # Catalog status — 2026-11-27
 
 The owner superseded Folded EL with the minimal bold EL terminal tile and approved cursor animation. The static mark uses the exact approved SVG geometry and colors; PNG raster variants are generated from those shapes with supersampling, including 16, 32, 180 and 192px versions. Header and browser favicon frames toggle the underscore every 650ms while motion is enabled and the document is visible; the off/reduced-motion setting (Auto) and hidden tabs restore the static cursor-on mark. Browser chrome may ignore favicon changes; CI tests the DOM state, frame decoding and URLs, not the actual browser tab UI. No mechanical view restored. New deployment and test results pending.
+
+Bookmark compatibility revision: prior terminal deployment and CI passed. The catalog now uses fixed icon URLs with a new version token, including a conventional 16/32px ICO built directly from the approved PNGs. The header continues blinking. Browser-managed bookmark caches cannot be directly invalidated by the site; actual Firefox bookmark toolbar updates remain unverified. New CI and deployment pending.

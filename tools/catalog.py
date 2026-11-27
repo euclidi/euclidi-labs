@@ -55,7 +55,7 @@ def main():
     if args.stage:
         out=args.stage
         out.mkdir(parents=True,exist_ok=True)
-        for name in ("index.html","site.webmanifest",".nojekyll"):
+        for name in ("index.html","site.webmanifest",".nojekyll","favicon.ico"):
             shutil.copy2(ROOT/name,out/name)
         for name in ("assets",):
             shutil.copytree(ROOT/name,out/name,dirs_exist_ok=True,ignore=shutil.ignore_patterns("*.md"))

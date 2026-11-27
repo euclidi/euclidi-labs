@@ -27,14 +27,28 @@ try {
     await page.locator('[data-filter="Physics"]').click();
     assert.equal(await page.locator('[data-filter="Physics"]').getAttribute('aria-pressed'),'true');
     await page.locator('[data-filter="All"]').click();
+    const iconLinks=await page.locator('link[rel="icon"],link[rel="shortcut icon"]').evaluateAll(els=>els.map(e=>e.getAttribute('href')));
+    assert.ok(iconLinks.some(p=>p.includes('favicon.ico?v=el6')));
+    const ico=await page.request.get(base+'favicon.ico?v=el6');
+    assert.equal(ico.status(),200);
+    const bytes=await ico.body();
+    assert.equal(bytes.readUInt16LE(2),1);
+    assert.equal(bytes.readUInt16LE(4),2);
+    assert.equal(bytes[6],16);
+    assert.equal(bytes[22],32);
+    for(const off of [6,22]){
+      const start=bytes.readUInt32LE(off+12),length=bytes.readUInt32LE(off+8);
+      assert.equal(bytes.subarray(start,start+8).toString('hex'),'89504e470d0a1a0a');
+      assert.ok(start+length<=bytes.length);
+    }
     await page.locator('#motion-mode').selectOption('on');
     await page.waitForFunction(()=>document.body.dataset.terminalCursor==='off',null,{timeout:5000});
-    assert.match(await page.locator('#favicon-32').getAttribute('href'),/el-32-off\.png/);
+    assert.deepEqual(await page.locator('link[rel="icon"],link[rel="shortcut icon"]').evaluateAll(els=>els.map(e=>e.getAttribute('href'))),iconLinks);
     await page.waitForFunction(()=>document.body.dataset.terminalCursor==='on',null,{timeout:5000});
     await page.locator('#motion-mode').selectOption('off');
     await page.waitForTimeout(750);
     assert.equal(await page.locator('body').getAttribute('data-terminal-cursor'),'on');
-    assert.match(await page.locator('#favicon-32').getAttribute('href'),/el-32\.png/);
+    assert.deepEqual(await page.locator('link[rel="icon"],link[rel="shortcut icon"]').evaluateAll(els=>els.map(e=>e.getAttribute('href'))),iconLinks);
     assert.equal(await page.locator('body').getAttribute('data-motion'),'off');
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),'horizontal overflow');
     assert.deepEqual(errors,[]);

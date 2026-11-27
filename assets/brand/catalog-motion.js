@@ -10,13 +10,10 @@
  let hasSavedPreference=false;
  try{const saved=localStorage.getItem(key);if(['auto','on','off'].includes(saved)){mode.value=saved;hasSavedPreference=true;}}catch{}
  const enabled=()=>mode.value==='on'||(mode.value==='auto'&&!preference.matches);
- // Keep the approved mark static except for its underscore. Use pre-rendered
- // favicon frames rather than depending on browser SVG animation support.
- const icons=[['favicon-16','el-16.png','el-16-off.png'],['favicon-32','el-32.png','el-32-off.png'],['favicon-svg','favicon.svg','favicon-off.svg']].map(([id,on,off])=>({link:document.getElementById(id),on:'./assets/brand/'+on+'?v=el5',off:'./assets/brand/'+off+'?v=el5'}));
+ // Keep favicon URLs static so bookmarks can cache the approved mark.
  let cursorTimer=null;
  function cursor(on){
    document.body.dataset.terminalCursor=on?'on':'off';
-   for(const icon of icons)if(icon.link)icon.link.setAttribute('href',on?icon.on:icon.off);
  }
  function syncCursor(){
    if(cursorTimer!==null){clearInterval(cursorTimer);cursorTimer=null;}
