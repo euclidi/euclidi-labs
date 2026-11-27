@@ -6,9 +6,9 @@
 /* Euclidi Labs — design revision 6: harmonized pixel typography and observable motion. */
 
 :root {
-  --ui-font:"Sinistre",Georgia,"Times New Roman",serif;--ui-scale:1;--ui-tracking:0px;--motion-speed:1;
-  --type-small:14px;--type-body:17px;
-  --type-card:23px;--type-brand:19px;
+  --ui-font:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;--display-font:"Sinistre",Georgia,serif;--ui-scale:1;--ui-tracking:0px;--motion-speed:1;
+  --type-small:12px;--type-body:14px;
+  --type-card:22px;--type-brand:16px;
   font-family:var(--ui-font);font-size:var(--type-body);font-weight:400;font-synthesis:none;
   letter-spacing:var(--ui-tracking);line-height:1.5;-webkit-text-size-adjust:100%;text-size-adjust:100%;
 }
@@ -24,7 +24,7 @@ button,input {letter-spacing:inherit;font-weight:400;}
 .mark {width:40px;height:40px;transform-origin:center;}
 .top nav {font-size:var(--type-small);gap:18px;flex-wrap:wrap;flex-shrink:0;}
 .intro {padding:32px 0 24px;}
-.intro h1 {font-size:clamp(32px,4vw,46px);line-height:1.25;margin:10px 0 12px;overflow-wrap:anywhere;}
+.intro h1 {font-size:clamp(30px,3.5vw,42px);line-height:1.25;margin:10px 0 12px;overflow-wrap:anywhere;}
 .intro p {font-size:var(--type-body);line-height:2;max-width:76ch;}
 .eyebrow,.count,.foot,.meta,.project-docs,.legacy,.actions a:not(.play) {font-size:var(--type-small);line-height:1.9;}
 .toolbar {gap:12px;margin-bottom:18px;}
@@ -48,7 +48,7 @@ button,input {letter-spacing:inherit;font-weight:400;}
 .cover-title,.cover-title.sanctuary,.cover-title.backyard-astronaut,.cover-title.pacman,.cover-title.dojo,
 .cover-title.dummy-lab-w18,.cover-title.sector-zero {
   font-family:var(--ui-font);font-weight:400;font-style:normal;font-stretch:normal;font-synthesis:none;
-  font-size:clamp(21px,8cqw,38px);line-height:1.12;
+  font-size:clamp(20px,7cqw,32px);line-height:1.12;
   letter-spacing:var(--ui-tracking);max-width:100%;overflow-wrap:anywhere;
 }
 .cover-title.dojo em {font-size:1em;font-style:normal;}
@@ -56,7 +56,7 @@ button,input {letter-spacing:inherit;font-weight:400;}
 .cover-top span,.cover-bottom span {min-width:0;max-width:100%;overflow-wrap:anywhere;}
 .info {padding:15px;}
 .meta {gap:6px 12px;flex-wrap:wrap;justify-content:space-between;}
-.info h2 {font-size:var(--type-card);line-height:1.65;margin:10px 0 8px;overflow-wrap:anywhere;}
+.info h2 {font-size:var(--type-card);line-height:1.3;margin:10px 0 8px;overflow-wrap:anywhere;}
 .info p {font-size:var(--type-body);line-height:2;margin-bottom:16px;overflow-wrap:anywhere;}
 .actions {gap:8px 12px;}
 .play {min-height:44px;gap:10px;max-width:100%;min-width:0;padding:10px 12px;}
@@ -111,11 +111,15 @@ body[data-terminal-cursor="off"] .terminal-cursor {opacity:0;}
 .intro.is-booting #catalog-intro {opacity:0;}
 #os-boot p {white-space:pre-wrap;overflow-wrap:anywhere;}
 
-/* Optical sizing for the supplied display face; keep artwork and logo geometry intact. */
-.brand,.intro h1,.info h2,.cover-title,.cover-title.sanctuary,.cover-title.backyard-astronaut,.cover-title.pacman,.cover-title.dojo,.cover-title.dummy-lab-w18,.cover-title.sector-zero {font-weight:700;}
+/* Restrained display typography; functional text uses a neutral system face. */
+.intro h1,.info h2,.cover-title,.cover-title.sanctuary,.cover-title.backyard-astronaut,.cover-title.pacman,.cover-title.dojo,.cover-title.dummy-lab-w18,.cover-title.sector-zero {font-family:var(--display-font);font-weight:400;}
+.brand,.catalog-heading h2,.play {font-weight:600;}
 .intro p,.info p {line-height:1.55;}
 button,input,select,textarea {font-family:var(--ui-font);}
 .top nav {min-width:0;max-width:100%;flex-shrink:1;}
 .cover-title {overflow-wrap:anywhere;}
 .cover-top,.cover-bottom {line-height:1.3;}
-@media(max-width:550px){.top nav{justify-content:flex-start;gap:10px 16px;}.cover-title{font-size:clamp(21px,8cqw,38px);}}
+@media(max-width:550px){.top nav{justify-content:flex-start;gap:10px 16px;}.cover-title{font-size:clamp(20px,7cqw,32px);}}
+
+/* Keep the mock boot console utilitarian, rather than decorative. */
+#os-boot,#os-boot h1,#os-boot p {font-family:var(--ui-font);font-weight:400;}

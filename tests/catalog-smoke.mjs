@@ -7,9 +7,9 @@ try {
     const page=await browser.newPage({viewport,reducedMotion:'reduce'});
     const errors=[]; page.on('pageerror',e=>errors.push(e.message));
     await page.goto(base,{waitUntil:'networkidle'});
-    assert.equal(await page.locator('body').getAttribute('data-design-revision'),'13');
-    const font=await page.evaluate(async()=>({loaded:(await document.fonts.load('400 17px Sinistre')).length>0,body:getComputedStyle(document.body).fontFamily,button:getComputedStyle(document.querySelector('.filters button')).fontFamily}));
-    assert(font.loaded&&font.body.includes('Sinistre')&&font.button.includes('Sinistre'));
+    assert.equal(await page.locator('body').getAttribute('data-design-revision'),'14');
+    const font=await page.evaluate(async()=>({loaded:(await document.fonts.load('400 17px Sinistre')).length>0,body:getComputedStyle(document.body).fontFamily,button:getComputedStyle(document.querySelector('.filters button')).fontFamily,heading:getComputedStyle(document.querySelector('#catalog-intro h1')||document.querySelector('.intro h1')).fontFamily}));
+    assert(font.loaded&&font.heading.includes('Sinistre')&&font.body.includes('system-ui')&&font.button.includes('system-ui'));
     assert.equal((await page.request.get(base+'assets/brand/sinistre/SinistreVF.woff2')).status(),200);
     const count=await page.locator('article.game').count();
    const palette=await page.evaluate(()=>{const s=getComputedStyle(document.documentElement);return Object.fromEntries(['--bg','--panel','--line','--fg','--muted','--accent'].map(k=>[k,s.getPropertyValue(k).trim()]))});
