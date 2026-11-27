@@ -1,0 +1,4 @@
+class Capture extends AudioWorkletProcessor {
+  constructor(){super();this.block=new Float32Array(1024);this.other=new Float32Array(1024);this.i=0;this.start=0;this.gen=0;this.channels=1;this.port.onmessage=({data})=>{if(data.type==='reset'){this.i=0;this.gen=data.gen;}};}
+  process(inputs,outputs){const x=inputs[0]?.[0],r=inputs[0]?.[1];if(x){for(let k=0;k<x.length;k++){if(!this.i){this.start=currentFrame+k;this.channels=r?2:1;}this.block[this.i]=x[k];this.other[this.i]=r?.[k]??0;this.i++;if(this.i===this.block.length){const b=this.block,c=this.other;this.port.postMessage({samples:b,right:this.channels===2?c:null,channels:this.channels,frame:this.start,gen:this.gen},this.channels===2?[b.buffer,c.buffer]:[b.buffer]);this.block=new Float32Array(1024);this.other=new Float32Array(1024);this.i=0;}}}for(const c of outputs[0]||[])c.fill(0);return true;}
+}registerProcessor('acoustica-capture',Capture);

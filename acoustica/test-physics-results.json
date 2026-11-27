@@ -1,0 +1,47 @@
+[
+  {
+    "name": "CFL safety",
+    "pass": true,
+    "detail": 0.85
+  },
+  {
+    "name": "Wave packet speed (20 cells/wavelength)",
+    "pass": true,
+    "detail": 340.17804111247204
+  },
+  {
+    "name": "Short lossless energy drift",
+    "pass": true,
+    "detail": 7.489372315649945e-7
+  },
+  {
+    "name": "Heterogeneous simulation finite",
+    "pass": true,
+    "detail": 0.004105837642418393
+  },
+  {
+    "name": "Worker plate",
+    "pass": true,
+    "detail": 0.000003702967611769636
+  },
+  {
+    "name": "Worker tube",
+    "pass": true,
+    "detail": 1.5029006554074925e-7
+  },
+  {
+    "name": "Worker field",
+    "pass": true,
+    "detail": 0.10239383461069884
+  },
+  {
+    "name": "Worker voice",
+    "pass": true,
+    "detail": 31.588378372596786
+  },
+  {
+    "name": "Worker ripple",
+    "pass": true,
+    "detail": 0.000031726276922159067
+  }
+]

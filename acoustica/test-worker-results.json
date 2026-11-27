@@ -1,0 +1,66 @@
+[
+  {
+    "name": "Worker dominant 1 kHz",
+    "actual": 999.9093509257679,
+    "expected": 1000,
+    "error": 0.09064907423214663,
+    "tol": 1,
+    "pass": true
+  },
+  {
+    "name": "Worker pitch 1 kHz",
+    "actual": 1000.212642576175,
+    "expected": 1000,
+    "error": 0.2126425761749715,
+    "tol": 5,
+    "pass": true
+  },
+  {
+    "name": "Worker RMS",
+    "actual": -9.033041765589738,
+    "expected": -9.0309,
+    "error": 0.0021417655897373322,
+    "tol": 0.05,
+    "pass": true
+  },
+  {
+    "name": "Weighted A at 1 kHz",
+    "actual": -9.030788672583046,
+    "expected": -9.0309,
+    "error": 0.00011132741695440984,
+    "tol": 0.2,
+    "pass": true
+  },
+  {
+    "name": "Weighted C at 1 kHz",
+    "actual": -9.032804832943018,
+    "expected": -9.0309,
+    "error": 0.0019048329430173538,
+    "tol": 0.2,
+    "pass": true
+  },
+  {
+    "name": "Integrated PSD",
+    "actual": 0.1250000002465757,
+    "expected": 0.125,
+    "error": 2.4657570429909015e-10,
+    "tol": 0.002,
+    "pass": true
+  },
+  {
+    "name": "Stereo correlation",
+    "actual": 1,
+    "expected": 1,
+    "error": 0,
+    "tol": 0.0001,
+    "pass": true
+  },
+  {
+    "name": "No dropped samples",
+    "actual": 0,
+    "expected": 0,
+    "error": 0,
+    "tol": 0,
+    "pass": true
+  }
+]
