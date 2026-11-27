@@ -24,6 +24,7 @@ jobs:
           node acoustica/test-core.mjs
           node acoustica/test-worker.mjs
           node acoustica/test-advanced.mjs
+          node acoustica/test-measurement.mjs
           node acoustica/test-physics.mjs
           node acoustica/test-stream.mjs
           node acoustica/test-models.mjs

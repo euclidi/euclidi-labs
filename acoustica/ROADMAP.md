@@ -15,3 +15,5 @@ Three.js r170 now vendored, initial physical representations and fallback added.
 The timebase now uses bounded sample streaming and offline files, with FIR and single-step controls. Full adaptive spatial refinement, rigorous anti-alias stopband validation, complete offline recordings and model/solver acceptance remain.
 
 Physical model iteration adds circle/membrane eigenmodes, end-corrected and lumped resonators, and voice waveguide synthesis. Full arbitrary geometry, realistic grain contacts, calibrated coupling and independent cross-reference tests remain.
+
+Measurement iteration adds scope cursors/persistence, timestamped spectrogram, level statistics, THD and transfer instruments, WebGL2 traces and offline cache. Full validated uncertainty, reference comparisons, complete hardware calibration and long-duration testing remain.

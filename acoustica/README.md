@@ -31,3 +31,6 @@ Live and buffered modes consume the routed samples in timestamp order. If the si
 
 ### Expanded model controls
 Cymatics supports a simply supported rectangle or circular plate/membrane; circular diameter is the domain height. Resonance includes ideal/end-corrected tubes and lumped single/paired Helmholtz cavities. The vocal lab's Analyze modeled voice button synthesizes a normalized glottal signal through the configured oral/nasal waveguide and sends it to the instruments; monitoring remains opt-in. These are linear reduced-order models with explicitly limited geometries.
+
+### Additional measurements and offline use
+Use oscilloscope cursor/trigger/range/persistence controls, select the spectrogram time span, or enable a controlled single-tone THD/THD+N test. Enable stereo transfer with a known left reference and right response; Welch estimates are meaningful only with suitable excitation and coherence. Fast/slow and percentile levels are approximate digital block statistics. Local service worker caches the application after an online visit; offline use does not grant microphone permission automatically.
