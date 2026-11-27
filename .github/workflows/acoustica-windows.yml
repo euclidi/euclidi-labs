@@ -1,0 +1,40 @@
+name: ACOUSTICA Windows output helper
+on:
+  push:
+    branches: [main]
+    paths: ['acoustica/**', '.github/workflows/acoustica-windows.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+      - name: Publish self-contained x64 helper
+        shell: pwsh
+        run: |
+          dotnet publish acoustica/windows/ACOUSTICA.csproj -c Release -r win-x64 --self-contained true -o package
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          New-Item -ItemType Directory -Force package/wwwroot/vendor | Out-Null
+          foreach ($f in @('index.html','style.css','app.js','capture.js','dsp.js','physics.js','core.wasm','apparatus.js','sw.js')) { Copy-Item "acoustica/$f" "package/wwwroot/$f" }
+          Copy-Item acoustica/vendor/three.module.min.js package/wwwroot/vendor/
+          Copy-Item acoustica/vendor/THREE-LICENSE.txt package/wwwroot/vendor/
+          Copy-Item acoustica/windows/README.md package/README.md
+      - name: Verify local server and origin rejection
+        shell: pwsh
+        run: |
+          $p = Start-Process -FilePath (Resolve-Path package/ACOUSTICA.exe) -ArgumentList '--no-browser' -PassThru
+          try {
+            $ok = $false
+            for ($i=0;$i -lt 30;$i++) { try { $r=Invoke-WebRequest http://127.0.0.1:8769/ -UseBasicParsing -TimeoutSec 2; if($r.Content -match 'Windows output \(native\)') { $ok=$true; break } } catch {}; Start-Sleep -Seconds 1 }
+            if(-not $ok) { throw 'Native local UI did not launch' }
+            try { Invoke-WebRequest http://127.0.0.1:8769/audio -UseBasicParsing -ErrorAction Stop; throw 'Unexpected audio access' } catch { if($_.Exception.Response.StatusCode.value__ -ne 403) { throw } }
+          } finally { Stop-Process -Id $p.Id -ErrorAction SilentlyContinue }
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ACOUSTICA-Windows-x64
+          path: package/
