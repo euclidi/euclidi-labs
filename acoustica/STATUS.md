@@ -1,3 +1,14 @@
+# Development status — 0.2.0-dev — 2026-11-27
+
+**Tested development release; full approved scope remains incomplete.** The implementation through commit 05f7496 passed [CI 45984501443](https://github.com/euclidi/euclidi-labs/actions/runs/45984501443). CI executed local numerical fixtures, browser interactions with reference generation, fake microphone and synthetic display audio, six laboratory modes, 3D presentation, patch graph and setup persistence, WAV export, mobile layout and offline reload. Real Windows system audio, physical mobile microphones and two actual devices remain unverified. No SPL certification or measured uncertainty is claimed. The source contains a C++20 WASM reference core, double-precision DSP/FDTD, WebGL2 traces with fallback and bundled Three.js r170; approved Emscripten/KissFFT/Eigen and WebGPU compute remain incomplete. See ROADMAP for outstanding requirements. Release publication must be checked separately from the Git commit.
+
+## Current implementation
+- Local mic, loopback, permission-based shared PC/tab audio, audio file, reference generator and manual peer-to-peer phone mic path; explicit stop, no monitoring by default.
+- Scope, FFT/PSD, spectrogram, levels, pitch/range, Burg LPC candidates, harmonics, phase, distortion and transfer, editable ordered patch graph, stereo WAV/CSV/PNG, setup persistence and local offline cache.
+- Six experiments: plate/membrane/circle modes and approximate sand migration, ideal/end-corrected and Helmholtz/coupled resonance, 2D FDTD, oral/nasal vocal waveguide synthesis, gravity-capillary surface modes and synthesis. 3D presentation is distinct from 2D physics. Source timebase is bounded timestamped streaming, offline files and single-step; skipped frames are reported.
+- This is a usable development release, not proof that all targets in SPEC were met. No physical microphone calibration or 30-minute capture/performance test was conducted.
+
+## Prior development history
 # Development status — 0.1.0 — 2026-11-27
 
 **Incomplete reference development build; not a verified public release.** Full approved scope is in SPEC.md. The local runtime cannot resolve github.com for git clone, lacks Emscripten and approved third-party source libraries, and Chromium navigation returned ERR_BLOCKED_BY_ADMINISTRATOR for localhost and synthetic test origin. No real browser playtest or device calibration completed. The GitHub connector is used for review branch transfer; deployment is gated by interactive validation. No cover art added.

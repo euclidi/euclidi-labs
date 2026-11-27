@@ -1,1 +1,9 @@
-{"id":1,"title":"ACOUSTICA","category":"Physics","version":"0.1.0-dev","description":"Experimental acoustic instrumentation and six sound-physics laboratories. Development build; scientific and device validation incomplete.","color":"#25332c","ink":"#c4d7bd"}
+{
+  "id": 1,
+  "title": "ACOUSTICA",
+  "category": "Physics",
+  "version": "0.2.0-dev",
+  "description": "Real-time acoustic measurement, microphone and PC audio acquisition, signal routing, and six interactive physics laboratories. Tested development release; hardware and scientific validation incomplete.",
+  "color": "#282c32",
+  "ink": "#d1dce4"
+}

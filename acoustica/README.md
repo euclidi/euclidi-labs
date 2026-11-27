@@ -1,6 +1,6 @@
 # ACOUSTICA — Euclidi Labs
 
-Development build 0.1.0 (2026-11-27). This is an incomplete implementation of approved Revision 2.1, not a validated public release. The complete scope is preserved in [SPEC.md](SPEC.md); see [STATUS.md](STATUS.md) and [ROADMAP.md](ROADMAP.md).
+Development build 0.2.0 (2026-11-27). This is an incomplete implementation of approved Revision 2.1, not a validated public release. The complete scope is preserved in [SPEC.md](SPEC.md); see [STATUS.md](STATUS.md) and [ROADMAP.md](ROADMAP.md).
 
 ## Launch
 
@@ -34,3 +34,5 @@ Cymatics supports a simply supported rectangle or circular plate/membrane; circu
 
 ### Additional measurements and offline use
 Use oscilloscope cursor/trigger/range/persistence controls, select the spectrogram time span, or enable a controlled single-tone THD/THD+N test. Enable stereo transfer with a known left reference and right response; Welch estimates are meaningful only with suitable excitation and coherence. Fast/slow and percentile levels are approximate digital block statistics. Local service worker caches the application after an online visit; offline use does not grant microphone permission automatically.
+
+**Current development release:** 0.2.0-dev. [Open ACOUSTICA](https://euclidi.github.io/euclidi-labs/acoustica/) when Pages publishes this revision. The expanded build passed [CI 45984501443](https://github.com/euclidi/euclidi-labs/actions/runs/45984501443), including controlled references, synthetic browser audio, 3D mode, mobile layout and offline cache. This is not a certified measuring instrument or complete implementation of every approved engineering requirement. See STATUS and ROADMAP for actual outstanding work.
