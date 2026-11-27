@@ -1,0 +1,9 @@
+{
+  "id": 1,
+  "title": "ACOUSTICA",
+  "category": "Physics",
+  "version": "0.2.0-dev",
+  "description": "Real-time acoustic measurement, microphone and PC audio acquisition, signal routing, and six interactive physics laboratories. Tested development release; hardware and scientific validation incomplete.",
+  "color": "#282c32",
+  "ink": "#d1dce4"
+}

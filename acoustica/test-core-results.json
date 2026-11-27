@@ -1,0 +1,146 @@
+[
+  {
+    "name": "RMS dBFS",
+    "actual": -9.030899869919436,
+    "expected": -9.0308998699,
+    "error": 1.943512017987814e-11,
+    "tol": 0.05,
+    "pass": true
+  },
+  {
+    "name": "Peak dBFS",
+    "actual": -6.020599913279624,
+    "expected": -6.020599913,
+    "error": 2.7962432369577073e-10,
+    "tol": 0.05,
+    "pass": true
+  },
+  {
+    "name": "FFT amplitude dBFS",
+    "actual": -6.020599913279647,
+    "expected": -6.020599913,
+    "error": 2.7964741633468293e-10,
+    "tol": 0.1,
+    "pass": true
+  },
+  {
+    "name": "Parseval",
+    "actual": 1023.9999999999945,
+    "expected": 1024,
+    "error": 5.4569682106375694e-12,
+    "tol": 1.024,
+    "pass": true
+  },
+  {
+    "name": "Coherent tone frequency",
+    "actual": 439.453125,
+    "expected": 439.453125,
+    "error": 0,
+    "tol": 0.439453125,
+    "pass": true
+  },
+  {
+    "name": "Window amplitude 1",
+    "actual": -6.0205999603189975,
+    "expected": -6.020599913,
+    "error": 4.7318997609124835e-8,
+    "tol": 0.1,
+    "pass": true
+  },
+  {
+    "name": "Window amplitude 2",
+    "actual": -6.020599953349497,
+    "expected": -6.020599913,
+    "error": 4.034949707687474e-8,
+    "tol": 0.1,
+    "pass": true
+  },
+  {
+    "name": "Window amplitude 3",
+    "actual": -6.020599916984053,
+    "expected": -6.020599913,
+    "error": 3.984053087435768e-9,
+    "tol": 0.1,
+    "pass": true
+  },
+  {
+    "name": "Window amplitude 4",
+    "actual": -6.0205999020809795,
+    "expected": -6.020599913,
+    "error": 1.0919020354549502e-8,
+    "tol": 0.1,
+    "pass": true
+  },
+  {
+    "name": "YIN 50",
+    "actual": 50.00002039702504,
+    "expected": 50,
+    "error": 0.000020397025039642358,
+    "tol": 0.25,
+    "pass": true
+  },
+  {
+    "name": "YIN 100",
+    "actual": 100.00016646173499,
+    "expected": 100,
+    "error": 0.00016646173499168526,
+    "tol": 0.5,
+    "pass": true
+  },
+  {
+    "name": "YIN 220",
+    "actual": 220.00199808983155,
+    "expected": 220,
+    "error": 0.0019980898315452578,
+    "tol": 1.1,
+    "pass": true
+  },
+  {
+    "name": "YIN 440",
+    "actual": 440.0172091452294,
+    "expected": 440,
+    "error": 0.0172091452294012,
+    "tol": 2.2,
+    "pass": true
+  },
+  {
+    "name": "YIN 1000",
+    "actual": 1000.2126425754449,
+    "expected": 1000,
+    "error": 0.21264257544487464,
+    "tol": 5,
+    "pass": true
+  },
+  {
+    "name": "YIN 2000",
+    "actual": 2001.6910655766733,
+    "expected": 2000,
+    "error": 1.6910655766732816,
+    "tol": 10,
+    "pass": true
+  },
+  {
+    "name": "Silence RMS",
+    "actual": 0,
+    "expected": 0,
+    "error": 0,
+    "tol": 0,
+    "pass": true
+  },
+  {
+    "name": "Silence pitch",
+    "actual": 0,
+    "expected": 0,
+    "error": 0,
+    "tol": 0,
+    "pass": true
+  },
+  {
+    "name": "Clipping count",
+    "actual": 8192,
+    "expected": 8192,
+    "error": 0,
+    "tol": 0,
+    "pass": true
+  }
+]

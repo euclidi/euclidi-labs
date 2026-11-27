@@ -1,0 +1,1 @@
+Three.js r170, exact upstream file `build/three.module.min.js` from https://github.com/mrdoob/three.js/tree/r170. Upstream Git blob SHA 282d1087068fab752a7e59b65aaa61c8b0a4be8c. MIT license, included locally; no runtime CDN. The renderer is a separate optional presentation path and does not change solver results.

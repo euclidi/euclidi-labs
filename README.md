@@ -9,7 +9,7 @@ The project index below is generated from registered project manifests.
 ## Project index
 
 <!-- PROJECT INDEX START -->
-
+- [ACOUSTICA](acoustica/README.md) — 0.2.0-dev · [Spec](acoustica/SPEC.md) · [Roadmap](acoustica/ROADMAP.md) · [Status](acoustica/STATUS.md)
 <!-- PROJECT INDEX END -->
 
 ## Development
