@@ -18,3 +18,6 @@
 - `node --check` for application and worker scripts. Browser test was attempted twice and blocked before application load. No UI, microphone hardware, system audio, real phone, cross-browser, browser export, latency, performance, privacy network audit, physical calibration, or publication verification.
 
 All unfinished acceptance requirements are in ROADMAP.md and SPEC.md; the project should remain a development review until browser smoke and actual interactive testing succeed.
+
+## Development iteration 2
+Prior Chromium CI run [45982258874](https://github.com/euclidi/euclidi-labs/actions/runs/45982258874) completed successfully (synthetic mic and system audio, generator, mobile, WAV export and six modes); real hardware untested. Added ordered editable patch graph with stereo taps, gain, mixing, subtraction, polarity, delayed signal, oscillators and RBJ biquad filters; zero-delay/forward cycles rejected. Added stereo WAV, Burg LPC envelope candidates, dominant-tone phase, voice pitch range, AC display coupling, fixed field scale, IndexedDB setup saving/restoration. New reference and browser tests registered; new run not yet verified. Existing limitations remain, including fully arbitrary graph, complete formant validation, physical apparatus rendering, optional GPU, adaptive/continuous physics and calibrated hardware.
