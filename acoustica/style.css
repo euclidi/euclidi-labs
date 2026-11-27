@@ -8,3 +8,5 @@
 .plots [data-plot=transfer]{grid-column:1/-1}#transferCanvas{height:180px}#cursorReadout{display:block;margin-top:5px}#modeList{font:11px monospace}#transferStats{font-size:11px}@media(max-width:650px){body[data-view=transfer] [data-plot=transfer]{display:block}}
 
 #captureGuide{padding:8px 18px;border-bottom:1px solid var(--edge);font-size:12px}#nativeLinks{padding:5px 0}#nativeLinks a{color:#b9d7e8}
+
+#nativeLinks{display:flex;align-items:center;gap:14px;flex-wrap:wrap}#nativeLinks[hidden],#rawCapture[hidden]{display:none!important}#nativeLinks .nativeDownload{display:inline-block;padding:8px 12px;border:1px solid #8795a2;background:#27313b;text-decoration:none;font-weight:600}#rawCapture{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:8px 0 2px;font:11px monospace;color:#c1d4df}#rawCaptureMeter{width:160px;height:12px;accent-color:#b9d7e8}
