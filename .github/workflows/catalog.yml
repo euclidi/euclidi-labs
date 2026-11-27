@@ -8,7 +8,7 @@ permissions:
   contents: read
 jobs:
   validate:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - run: python3 tools/catalog.py --check
@@ -29,7 +29,7 @@ jobs:
   deploy:
     if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
     needs: validate
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     permissions:
       pages: write
       id-token: write

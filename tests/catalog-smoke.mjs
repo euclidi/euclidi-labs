@@ -6,7 +6,7 @@ try {
   for (const viewport of [{width:1280,height:720},{width:390,height:844}]) {
     const page=await browser.newPage({viewport,reducedMotion:'reduce'});
     const errors=[]; page.on('pageerror',e=>errors.push(e.message));
-    await page.goto(base);
+    await page.goto(base,{waitUntil:'networkidle'});
     const count=await page.locator('article.game').count();
     assert.equal(await page.locator('#count').textContent(),String(count).padStart(2,'0')+(count===1?' PROJECT':' PROJECTS'));
     await page.locator('#search').fill('zzzz-smoke-no-match');
@@ -15,7 +15,7 @@ try {
     await page.locator('#motion-mode').selectOption('off');
     assert.equal(await page.locator('body').getAttribute('data-motion'),'off');
     await page.goto(base+'library/');
-    await page.waitForFunction(()=>['true','error'].includes(document.body.dataset.ready),{timeout:60000},{timeout:60000});
+    await page.waitForFunction(()=>['true','error'].includes(document.body.dataset.ready),null,{timeout:60000});
     assert.equal(await page.locator('body').getAttribute('data-ready'),'true','WebGL startup');
     assert.equal(await page.locator('body').getAttribute('data-inventory'),String(count));
     if(!count)assert.equal(await page.locator('#retrieve').isDisabled(),true);
