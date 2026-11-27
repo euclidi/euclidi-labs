@@ -98,23 +98,10 @@ body[data-motion="off"] .mark,body[data-motion="off"] .game,body[data-motion="of
 .mark {background:none;flex-shrink:0;}
 body[data-terminal-cursor="off"] .terminal-cursor {opacity:0;}
 
-/* Fullscreen terminal startup. No scanlines, shutter, glow, or distortion. */
-#os-boot {position:fixed;inset:0;width:100%;height:100%;height:100dvh;max-width:none;max-height:none;margin:0;border:0;padding:0;background:#000;color:#ddd;font:400 clamp(12px,1.5vw,15px)/1.55 ui-monospace,Consolas,"Liberation Mono",monospace;letter-spacing:0;overflow:auto;}
-#os-boot:not([open]) {display:none;}
-#os-boot::backdrop {background:#000;}
-body:has(#os-boot[open]) {overflow:hidden;}
-.os-frame {width:min(100%,740px);min-height:100%;margin:0 auto;padding:clamp(16px,5vw,48px);display:flex;flex-direction:column;box-sizing:border-box;}
-.os-mast {display:flex;justify-content:space-between;gap:12px;padding-bottom:12px;border-bottom:1px solid #444;font-size:.8em;color:#999;flex-wrap:wrap;}
-#os-boot-title {font:700 clamp(28px,7vw,52px)/1.1 ui-monospace,Consolas,monospace;letter-spacing:-.045em;margin:clamp(20px,5vh,48px) 0 8px;color:#f1f1ed;}
-#os-boot-description {color:#999;margin:0 0 clamp(16px,4vh,30px);font-size:.85em;}
-.os-log {display:grid;gap:6px;align-content:start;}
-.os-line {display:grid;grid-template-columns: minmax(0,1fr) auto;gap:12px;opacity:0;}
-.os-line.is-ready {opacity:1;}
-.os-line span:first-child {overflow-wrap:anywhere;}
-.os-line span:last-child {color:#aaa;text-align:right;}
-.os-prompt {display:flex;align-items:center;gap:4px;min-height:1.55em;margin-top:20px;white-space:pre-wrap;overflow-wrap:anywhere;}
-.os-cursor {display:inline-block;width:.6em;height:.95em;flex:none;background:#ddd;animation:eg-cursor 1s steps(1,end) infinite;}
-.os-bottom {margin-top:auto;padding-top:24px;display:flex;justify-content:space-between;gap:12px;align-items:center;color:#999;font-size:.8em;}
-#boot-skip {background:#000;border:1px solid #555;color:#ddd;min-height:44px;padding:8px 14px;font:inherit;}
-#boot-skip:hover,#boot-skip:focus-visible {border-color:#ddd;color:#fff;}
-@media(max-height:440px) {.os-frame{padding:12px 20px}.os-mast{padding-bottom:5px}#os-boot-title{font-size:26px;margin:12px 0 4px}#os-boot-description{margin-bottom:10px}.os-log{gap:2px}.os-prompt{margin-top:8px}.os-bottom{padding-top:8px}}
+/* Boot occupies the existing introduction without moving catalog controls. */
+.intro {position:relative;}
+#catalog-intro {position:relative;}
+#os-boot {position:absolute;inset:0;padding:inherit;pointer-events:none;}
+#os-boot[hidden] {display:none;}
+.intro.is-booting #catalog-intro {opacity:0;}
+#os-boot p {white-space:pre-wrap;overflow-wrap:anywhere;}
