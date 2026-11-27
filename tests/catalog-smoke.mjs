@@ -41,7 +41,21 @@ try {
       assert.equal(bytes.subarray(start,start+8).toString('hex'),'89504e470d0a1a0a');
       assert.ok(start+length<=bytes.length);
     }
+    assert.equal(await page.locator('#os-boot').isVisible(),false);
+    assert.equal(await page.locator('.eg-crt').count(),0);
     await page.locator('#motion-mode').selectOption('on');
+    await page.locator('#os-boot').waitFor({state:'visible'});
+    assert.equal(await page.locator('#os-boot-title').textContent(),'EUCLIDI OS');
+    assert.equal(await page.locator('#os-boot .os-line').count(),5);
+    assert.ok(await page.locator('#os-boot').evaluate(e=>e.clientWidth<=innerWidth&&e.scrollWidth<=e.clientWidth));
+    await page.locator('#boot-skip').click();
+    assert.equal(await page.locator('#os-boot').isVisible(),false);
+    await page.locator('#boot-replay').click();
+    await page.locator('#os-boot .os-line.is-ready').first().waitFor();
+    await page.keyboard.press('Escape');
+    assert.equal(await page.locator('#os-boot').isVisible(),false);
+    await page.locator('#boot-replay').click();
+    await page.locator('#os-boot').waitFor({state:'hidden',timeout:5000});
     await page.waitForFunction(()=>document.body.dataset.terminalCursor==='off',null,{timeout:5000});
     assert.deepEqual(await page.locator('link[rel="icon"],link[rel="shortcut icon"]').evaluateAll(els=>els.map(e=>e.getAttribute('href'))),iconLinks);
     await page.waitForFunction(()=>document.body.dataset.terminalCursor==='on',null,{timeout:5000});
@@ -51,6 +65,14 @@ try {
     assert.deepEqual(await page.locator('link[rel="icon"],link[rel="shortcut icon"]').evaluateAll(els=>els.map(e=>e.getAttribute('href'))),iconLinks);
     assert.equal(await page.locator('body').getAttribute('data-motion'),'off');
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),'horizontal overflow');
+    assert.equal(await page.locator('#boot-replay').isDisabled(),true);
+    assert.deepEqual(errors,[]);
+    await page.evaluate(()=>localStorage.removeItem('euclidi.labs.catalog.motion.v1'));
+    await page.emulateMedia({reducedMotion:'no-preference'});
+    await page.reload({waitUntil:'domcontentloaded'});
+    await page.locator('#os-boot').waitFor({state:'visible'});
+    await page.locator('#os-boot').waitFor({state:'hidden',timeout:5000});
+    assert.equal(await page.locator('#os-boot').isVisible(),false);
     assert.deepEqual(errors,[]);
     await page.close();
   }

@@ -1,10 +1,9 @@
 /* Catalog motion — OS-aware Auto by default, optional manual mode, mouse events independent of media capability. */
 (()=>{
  const preference=matchMedia('(prefers-reduced-motion: reduce)');
- const replay=document.getElementById('crt-replay'), mode=document.getElementById('motion-mode'), choice=document.getElementById('motion-choice'), status=document.getElementById('motion-status');
- const overlay=document.createElement('div');overlay.className='eg-crt';overlay.setAttribute('aria-hidden','true');
- const line=document.createElement('div');line.className='eg-crt-line';overlay.append(line);document.body.append(overlay);
- let generation=0;
+ const replay=document.getElementById('boot-replay'), mode=document.getElementById('motion-mode'), choice=document.getElementById('motion-choice'), status=document.getElementById('motion-status');
+ const boot=document.getElementById('os-boot'), log=boot.querySelector('.os-log'), command=document.getElementById('os-command'), skip=document.getElementById('boot-skip');
+ let bootTimers=[], previousFocus=null;
  const key='euclidi.labs.catalog.motion.v1';
  mode.value='auto'; // Default respects the OS reduced-motion setting.
  let hasSavedPreference=false;
@@ -20,20 +19,45 @@
    cursor(true);
    if(enabled()&&!document.hidden)cursorTimer=setInterval(()=>cursor(document.body.dataset.terminalCursor!=='on'),650);
  }
- document.addEventListener('visibilitychange',syncCursor);
- function stop(){generation++;overlay.classList.remove('is-playing');}
- function startup(){
-   if(!enabled())return;
-   const current=++generation;
-   overlay.classList.remove('is-playing');void overlay.offsetWidth;overlay.classList.add('is-playing');
-   setTimeout(()=>{if(current===generation)stop();},1250);
+ document.addEventListener('visibilitychange',()=>{syncCursor();if(document.hidden)stop();});
+ function stop(){
+   bootTimers.forEach(clearTimeout);bootTimers=[];
+   if(!boot.open)return;
+   boot.close();
+   if(previousFocus instanceof HTMLElement&&previousFocus!==document.body&&previousFocus.isConnected)previousFocus.focus({preventScroll:true});
+   previousFocus=null;
  }
+ function startup(){
+   if(!enabled()||document.hidden||typeof boot.showModal!=='function')return;
+   stop();
+   previousFocus=document.activeElement;
+   log.replaceChildren();command.textContent='';
+   // These are presentation-only boot messages, not hardware diagnostics.
+   const rows=[
+     ['Initialize laboratory shell','OK'],
+     ['Load interface modules','OK'],
+     ['Mount experiment library','OK'],
+     ['Read project index',String(document.querySelectorAll('article.game').length).padStart(2,'0')+' ENTRIES'],
+     ['Environment ready','OK']
+   ].map(([label,value])=>{
+     const row=document.createElement('div');row.className='os-line';
+     const a=document.createElement('span'),b=document.createElement('span');a.textContent=label;b.textContent='['+value+']';row.append(a,b);log.append(row);return row;
+   });
+   boot.showModal();
+   const later=(fn,ms)=>bootTimers.push(setTimeout(fn,ms));
+   rows.forEach((row,i)=>later(()=>row.classList.add('is-ready'),180+i*230));
+   const text='labs> open library';
+   for(let i=1;i<=text.length;i++)later(()=>{command.textContent=text.slice(0,i);},1370+i*34);
+   later(stop,2350);
+ }
+ skip.addEventListener('click',stop);
+ boot.addEventListener('cancel',event=>{event.preventDefault();stop();});
  function sync(){
    const on=enabled();
    document.body.dataset.motion=on?'on':'off';
    document.body.dataset.motionPreference=mode.value;
    replay.hidden=false;choice.hidden=false;status.hidden=false;
-   replay.disabled=!on;replay.textContent='Replay CRT';
+   replay.disabled=!on;replay.textContent='Replay boot';
    status.textContent=on?(mode.value==='on'?(hasSavedPreference?'On (manual)':'On (default)'):'On (system)'):(mode.value==='off'?'Off (manual)':'Off (system)');
    syncCursor();
    if(!on){stop();document.querySelectorAll('.is-tilted,.eg-hover,.eg-tap').forEach(e=>e.classList.remove('is-tilted','eg-hover','eg-tap'));}
@@ -62,5 +86,5 @@
    const clear=()=>card.classList.remove('is-tilted');
    card.addEventListener('mouseleave',clear);card.addEventListener('pointerleave',clear);card.addEventListener('pointercancel',clear);
  }
- Promise.race([document.fonts.ready,new Promise(resolve=>setTimeout(resolve,650))]).then(()=>requestAnimationFrame(()=>requestAnimationFrame(startup)));
+ startup();
 })();

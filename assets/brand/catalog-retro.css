@@ -10,7 +10,7 @@
 body {font-size:var(--type-body);}
 .brand,.top nav,.intro h1,.intro p,.eyebrow,.meta,.cover-top,.cover-bottom,.cover-title,.count,.foot,
 .catalog-heading h2,.info h2,.info p,.play,.legacy,.project-docs,.filters button,.search input,.search span,
-.actions a,#empty,#crt-replay {
+.actions a,#empty,#boot-replay {
   font-family:var(--ui-font);font-weight:400;letter-spacing:var(--ui-tracking);font-style:normal;
 }
 button,input {letter-spacing:inherit;font-weight:400;}
@@ -33,9 +33,9 @@ button,input {letter-spacing:inherit;font-weight:400;}
 .catalog-heading {gap:12px;flex-wrap:wrap;margin-bottom:12px;}
 .catalog-heading h2 {font-size:var(--type-brand);line-height:1.7;}
 .catalog-tools {display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
-#crt-replay {font-size:var(--type-small);background:transparent;color:var(--muted);border:1px solid var(--line);min-height:36px;padding:7px 10px;}
-#crt-replay:hover,#crt-replay:focus-visible {color:var(--fg);border-color:var(--accent);}
-#crt-replay:disabled {opacity:.65;cursor:default;}
+#boot-replay {font-size:var(--type-small);background:transparent;color:var(--muted);border:1px solid var(--line);min-height:36px;padding:7px 10px;}
+#boot-replay:hover,#boot-replay:focus-visible {color:var(--fg);border-color:var(--accent);}
+#boot-replay:disabled {opacity:.65;cursor:default;}
 .games {gap:20px;}
 .game {container-type:inline-size;min-width:0;position:relative;transform-origin:center;}
 .cover {padding:clamp(12px,4cqw,18px);gap:8px;}
@@ -60,21 +60,10 @@ button,input {letter-spacing:inherit;font-weight:400;}
 .project-docs a {min-height:34px;}
 .foot {overflow-wrap:anywhere;}
 .intro h1::after {content:"";display:inline-block;width:.52em;height:.9em;margin-inline-start:.25em;vertical-align:-.08em;background:currentColor;}
-/* A viewport-sized CRT shutter, independent of total document height. */
-.eg-crt {position:fixed;inset:0;z-index:2147483640;pointer-events:none;visibility:hidden;overflow:hidden;}
-.eg-crt::before,.eg-crt::after {content:"";position:absolute;left:0;right:0;height:50%;background:#090a09;}
-.eg-crt::before {top:0;transform-origin:top;}
-.eg-crt::after {bottom:0;transform-origin:bottom;}
-.eg-crt-line {position:absolute;top:calc(50% - 1px);left:0;right:0;height:2px;background:#dce6c8;transform:scaleX(0);}
-@keyframes eg-crt-shutter {0%,28%{transform:scaleY(1);}72%{transform:scaleY(.18);}100%{transform:scaleY(0);}}
-@keyframes eg-crt-line {0%{transform:scaleX(0);opacity:1;}24%{transform:scaleX(1);opacity:1;}60%{opacity:.8;}100%{transform:scaleX(1);opacity:0;}}
 @keyframes eg-cursor {0%,49%{opacity:1;}50%,100%{opacity:0;}}
 @keyframes eg-pixel-blink {0%,49%{background:var(--accent);color:#151811;}50%,100%{background:var(--bg);color:var(--accent);box-shadow:inset 0 0 0 2px var(--accent);}}
 /* Effective motion setting is resolved once by the controller, not by pointer-capability queries.
    On is the default. Auto follows the operating system; Off disables motion. */
-body[data-motion="on"] .eg-crt.is-playing {visibility:visible;}
-body[data-motion="on"] .eg-crt.is-playing::before,body[data-motion="on"] .eg-crt.is-playing::after {animation:eg-crt-shutter calc(1.05s / var(--motion-speed)) ease-in-out both;}
-body[data-motion="on"] .eg-crt.is-playing .eg-crt-line {animation:eg-crt-line calc(1.05s / var(--motion-speed)) linear both;}
 body[data-motion="on"] .intro h1::after {animation:eg-cursor calc(1.2s / var(--motion-speed)) steps(1,end) infinite;}
 body[data-motion="on"] .game {transition:transform calc(.16s / var(--motion-speed)) ease-out,border-color calc(.16s / var(--motion-speed));}
 body[data-motion="on"] .game.is-tilted {transform:perspective(700px) rotateX(var(--tilt-x,0deg)) rotateY(var(--tilt-y,0deg)) translateY(-4px);border-color:var(--accent);z-index:2;}
@@ -87,11 +76,10 @@ body[data-motion="on"] .play:is(:hover,.eg-hover),body[data-motion="on"] .filter
 body[data-motion="on"] .play:focus-visible,body[data-motion="on"] .filters button:focus-visible {animation:eg-pixel-blink calc(1s / var(--motion-speed)) steps(1,end) 2;}
 body[data-motion="on"] .play:active,body[data-motion="on"] .filters button:active {background:var(--bg);color:var(--accent);box-shadow:inset 0 0 0 2px var(--accent);}
 body[data-motion="on"] .eg-tap {animation:eg-pixel-blink calc(.65s / var(--motion-speed)) steps(1,end) 1!important;}
-body[data-motion="off"] .eg-crt {display:none;}
 body[data-motion="off"] .mark,body[data-motion="off"] .game,body[data-motion="off"] .play,body[data-motion="off"] .filters button,body[data-motion="off"] .intro h1::after {animation:none!important;transition:none!important;transform:none!important;}
 #motion-choice,#motion-status {font:400 var(--type-small)/1.8 var(--ui-font);letter-spacing:1px;color:var(--muted);}
 #motion-choice select {background:var(--panel);color:var(--fg);border:1px solid var(--line);padding:6px;font:inherit;letter-spacing:inherit;min-height:36px;}
-#motion-choice[hidden],#motion-status[hidden],#crt-replay[hidden] {display:none!important;}
+#motion-choice[hidden],#motion-status[hidden],#boot-replay[hidden] {display:none!important;}
 #motion-status {white-space:normal;}
 @media(max-width:900px) {.top nav{gap:12px;}}
 @media(max-width:550px) {
@@ -109,3 +97,24 @@ body[data-motion="off"] .mark,body[data-motion="off"] .game,body[data-motion="of
 /* Approved EL terminal mark; no backing beyond the original tile. */
 .mark {background:none;flex-shrink:0;}
 body[data-terminal-cursor="off"] .terminal-cursor {opacity:0;}
+
+/* Fullscreen terminal startup. No scanlines, shutter, glow, or distortion. */
+#os-boot {position:fixed;inset:0;width:100%;height:100%;height:100dvh;max-width:none;max-height:none;margin:0;border:0;padding:0;background:#000;color:#ddd;font:400 clamp(12px,1.5vw,15px)/1.55 ui-monospace,Consolas,"Liberation Mono",monospace;letter-spacing:0;overflow:auto;}
+#os-boot:not([open]) {display:none;}
+#os-boot::backdrop {background:#000;}
+body:has(#os-boot[open]) {overflow:hidden;}
+.os-frame {width:min(100%,740px);min-height:100%;margin:0 auto;padding:clamp(16px,5vw,48px);display:flex;flex-direction:column;box-sizing:border-box;}
+.os-mast {display:flex;justify-content:space-between;gap:12px;padding-bottom:12px;border-bottom:1px solid #444;font-size:.8em;color:#999;flex-wrap:wrap;}
+#os-boot-title {font:700 clamp(28px,7vw,52px)/1.1 ui-monospace,Consolas,monospace;letter-spacing:-.045em;margin:clamp(20px,5vh,48px) 0 8px;color:#f1f1ed;}
+#os-boot-description {color:#999;margin:0 0 clamp(16px,4vh,30px);font-size:.85em;}
+.os-log {display:grid;gap:6px;align-content:start;}
+.os-line {display:grid;grid-template-columns: minmax(0,1fr) auto;gap:12px;opacity:0;}
+.os-line.is-ready {opacity:1;}
+.os-line span:first-child {overflow-wrap:anywhere;}
+.os-line span:last-child {color:#aaa;text-align:right;}
+.os-prompt {display:flex;align-items:center;gap:4px;min-height:1.55em;margin-top:20px;white-space:pre-wrap;overflow-wrap:anywhere;}
+.os-cursor {display:inline-block;width:.6em;height:.95em;flex:none;background:#ddd;animation:eg-cursor 1s steps(1,end) infinite;}
+.os-bottom {margin-top:auto;padding-top:24px;display:flex;justify-content:space-between;gap:12px;align-items:center;color:#999;font-size:.8em;}
+#boot-skip {background:#000;border:1px solid #555;color:#ddd;min-height:44px;padding:8px 14px;font:inherit;}
+#boot-skip:hover,#boot-skip:focus-visible {border-color:#ddd;color:#fff;}
+@media(max-height:440px) {.os-frame{padding:12px 20px}.os-mast{padding-bottom:5px}#os-boot-title{font-size:26px;margin:12px 0 4px}#os-boot-description{margin-bottom:10px}.os-log{gap:2px}.os-prompt{margin-top:8px}.os-bottom{padding-top:8px}}
