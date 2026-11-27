@@ -11,8 +11,13 @@ try {
     assert.equal(await page.locator('#count').textContent(),String(count).padStart(2,'0')+(count===1?' PROJECT':' PROJECTS'));
     assert.equal(await page.locator('a[href="./library/"]').count(),0);
     assert.equal(await page.locator('.mark').evaluate(i=>i.complete&&i.naturalWidth>0),true);
-    for(const icon of ['el.svg']){
+    for(const icon of ['el.svg','favicon.svg','el-16.png','el-32.png']){
       const response=await page.request.get(base+'assets/brand/'+icon);assert.equal(response.status(),200);
+    }
+    assert.equal(await page.locator('.mark').evaluate(i=>getComputedStyle(i).backgroundColor),'rgb(241, 240, 237)');
+    for(const [size,path] of [[16,'el-16.png'],[32,'el-32.png']]){
+      const actual=await page.evaluate(async p=>{const img=new Image();img.src='assets/brand/'+p;await img.decode();return [img.naturalWidth,img.naturalHeight]},path);
+      assert.deepEqual(actual,[size,size]);
     }
     await page.locator('#search').fill('zzzz-smoke-no-match');
     assert.equal(await page.locator('.game:visible').count(),0);

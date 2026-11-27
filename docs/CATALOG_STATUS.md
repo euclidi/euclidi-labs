@@ -1,3 +1,3 @@
 # Catalog status — 2026-11-27
 
-The mechanical library remains removed at the owner's request. The unapproved pixel flask icon was reverted to the previous EL mark. No new branding may be committed or published before explicit owner approval. The generator, motion settings, documentation standards and CI are retained. Deployment and revised browser-test results remain to be verified.
+The mechanical library remains removed. The owner explicitly selected concept 03 (Folded EL) from the identity studies. The original charcoal geometry is retained without alteration; the favicon and dark header use a neutral light backing as in the approved dark-tab preview. Native 16px and 32px PNG icons and scalable SVG favicon are included. Existing catalog functionality, motion settings, documentation and CI are retained. The new revision requires deployment and browser verification.

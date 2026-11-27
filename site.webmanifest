@@ -9,9 +9,16 @@
   "theme_color": "#111210",
   "icons": [
     {
-      "src": "assets/brand/el.svg?v=el3",
+      "src": "assets/brand/favicon.svg?v=el4",
       "sizes": "any",
-      "type": "image/svg+xml"
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/brand/el-32.png?v=el4",
+      "sizes": "32x32",
+      "type": "image/png",
+      "purpose": "any"
     }
   ]
 }
