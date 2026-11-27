@@ -8,6 +8,10 @@ try {
     const errors=[]; page.on('pageerror',e=>errors.push(e.message));
     await page.goto(base,{waitUntil:'networkidle'});
     const count=await page.locator('article.game').count();
+   const palette=await page.evaluate(()=>{const s=getComputedStyle(document.documentElement);return Object.fromEntries(['--bg','--panel','--line','--fg','--muted','--accent'].map(k=>[k,s.getPropertyValue(k).trim()]))});
+   assert.deepEqual(palette,{'--bg':'#111111','--panel':'#191919','--line':'#353535','--fg':'#eeeeee','--muted':'#a6a6a6','--accent':'#dddddd'});
+   assert.equal(await page.locator('body').evaluate(e=>getComputedStyle(e).backgroundColor),'rgb(17, 17, 17)');
+   assert.equal(await page.locator('meta[name="theme-color"]').getAttribute('content'),'#111111');
     assert.equal(await page.locator('#count').textContent(),String(count).padStart(2,'0')+(count===1?' PROJECT':' PROJECTS'));
 
    assert.equal(await page.locator('a[href="./library/"]').count(),0);
