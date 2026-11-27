@@ -10,12 +10,13 @@ try {
     const count=await page.locator('article.game').count();
     assert.equal(await page.locator('#count').textContent(),String(count).padStart(2,'0')+(count===1?' PROJECT':' PROJECTS'));
     assert.equal(await page.locator('a[href="./library/"]').count(),0);
-    assert.equal(await page.locator('.mark').evaluate(i=>i.complete&&i.naturalWidth>0),true);
-    for(const icon of ['el.svg','favicon.svg','el-16.png','el-32.png']){
+    assert.equal(await page.locator('.mark').evaluate(i=>i.tagName.toLowerCase()==='svg'&&i.getBBox().width>0),true);
+    for(const icon of ['el.svg','favicon.svg','favicon-off.svg','el-16.png','el-32.png','el-16-off.png','el-32-off.png','el-180.png','el-192.png']){
       const response=await page.request.get(base+'assets/brand/'+icon);assert.equal(response.status(),200);
     }
-    assert.equal(await page.locator('.mark').evaluate(i=>getComputedStyle(i).backgroundColor),'rgb(241, 240, 237)');
-    for(const [size,path] of [[16,'el-16.png'],[32,'el-32.png']]){
+    assert.equal(await page.locator('body').getAttribute('data-terminal-cursor'),'on');
+    assert.equal(await page.locator('body').getAttribute('data-motion'),'off');
+    for(const [size,path] of [[16,'el-16.png'],[32,'el-32.png'],[16,'el-16-off.png'],[32,'el-32-off.png'],[180,'el-180.png'],[192,'el-192.png']]){
       const actual=await page.evaluate(async p=>{const img=new Image();img.src='assets/brand/'+p;await img.decode();return [img.naturalWidth,img.naturalHeight]},path);
       assert.deepEqual(actual,[size,size]);
     }
@@ -26,7 +27,14 @@ try {
     await page.locator('[data-filter="Physics"]').click();
     assert.equal(await page.locator('[data-filter="Physics"]').getAttribute('aria-pressed'),'true');
     await page.locator('[data-filter="All"]').click();
+    await page.locator('#motion-mode').selectOption('on');
+    await page.waitForFunction(()=>document.body.dataset.terminalCursor==='off',null,{timeout:5000});
+    assert.match(await page.locator('#favicon-32').getAttribute('href'),/el-32-off\.png/);
+    await page.waitForFunction(()=>document.body.dataset.terminalCursor==='on',null,{timeout:5000});
     await page.locator('#motion-mode').selectOption('off');
+    await page.waitForTimeout(750);
+    assert.equal(await page.locator('body').getAttribute('data-terminal-cursor'),'on');
+    assert.match(await page.locator('#favicon-32').getAttribute('href'),/el-32\.png/);
     assert.equal(await page.locator('body').getAttribute('data-motion'),'off');
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+2),'horizontal overflow');
     assert.deepEqual(errors,[]);

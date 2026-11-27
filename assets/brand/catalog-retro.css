@@ -106,5 +106,6 @@ body[data-motion="off"] .mark,body[data-motion="off"] .game,body[data-motion="of
   .play {flex:1;}
 }
 
-/* Approved concept 03: charcoal Folded EL. Light backing preserves contrast on dark surfaces. */
-.mark {background:#f1f0ed;}
+/* Approved EL terminal mark; no backing beyond the original tile. */
+.mark {background:none;flex-shrink:0;}
+body[data-terminal-cursor="off"] .terminal-cursor {opacity:0;}
