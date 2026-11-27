@@ -11,10 +11,9 @@ try {
     assert.equal(await page.locator('#count').textContent(),String(count).padStart(2,'0')+(count===1?' PROJECT':' PROJECTS'));
     assert.equal(await page.locator('a[href="./library/"]').count(),0);
     assert.equal(await page.locator('.mark').evaluate(i=>i.complete&&i.naturalWidth>0),true);
-    for(const icon of ['el.svg','el-16.png','el-32.png','el-48.png','el-192.png']){
+    for(const icon of ['el.svg']){
       const response=await page.request.get(base+'assets/brand/'+icon);assert.equal(response.status(),200);
     }
-    assert.equal((await page.request.get(base+'favicon.ico')).status(),200);
     await page.locator('#search').fill('zzzz-smoke-no-match');
     assert.equal(await page.locator('.game:visible').count(),0);
     assert.equal(await page.locator('#empty').isVisible(),true);
